@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Võ Hồng Thắng | Người Trao Giải Pháp Tinh Gọn</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,500;0,700;0,900;1,600&family=Be+Vietnam+Pro:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F6F1E2;
+    --paper-2:#EFE7CF;
+    --ink:#1F3A5C;
+    --ink-dark:#152840;
+    --stamp:#B23A20;
+    --stamp-dark:#8C2B17;
+    --gold:#B8862B;
+    --charcoal:#2B2620;
+    --line:#CBBE9C;
+    --white:#FFFBF3;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--charcoal);
+    font-family:'Be Vietnam Pro', sans-serif;
+    line-height:1.55;
+    background-image:
+      radial-gradient(var(--line) 0.6px, transparent 0.6px);
+    background-size: 22px 22px;
+  }
+  h1,h2,h3,.display{font-family:'Bitter', serif;}
+  .mono{font-family:'Space Mono', monospace;}
+  a{color:inherit;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:1120px; margin:0 auto; padding:0 24px;}
+
+  /* perforation divider */
+  .tear{
+    position:relative;
+    height:0;
+    border-top:2px dashed var(--line);
+    margin: 0;
+  }
+  .tear::before, .tear::after{
+    content:"";
+    position:absolute; top:-11px;
+    width:22px; height:22px; border-radius:50%;
+    background:var(--paper);
+    box-shadow: 0 0 0 2px var(--paper);
+  }
+  .tear::before{left:-11px;}
+  .tear::after{right:-11px;}
+
+  /* HEADER */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:var(--ink);
+    color:var(--white);
+    border-bottom:3px solid var(--stamp);
+  }
+  .header-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 24px;
+  }
+  .logo{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Bitter', serif; font-weight:700; font-size:1.05rem;
+    letter-spacing:0.2px;
+  }
+  .logo .mark{
+    width:38px; height:38px; border-radius:50%;
+    border:2px solid var(--stamp);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Space Mono', monospace; font-weight:700;
+    color:var(--stamp);
+    font-size:0.95rem;
+    flex-shrink:0;
+  }
+  .logo small{display:block; font-family:'Be Vietnam Pro',sans-serif; font-weight:400; font-size:0.68rem; opacity:0.75; letter-spacing:0.5px;}
+  nav{display:none; gap:26px; font-size:0.92rem; font-weight:500;}
+  nav a{opacity:0.88; text-decoration:none; padding:6px 0; border-bottom:2px solid transparent;}
+  nav a:hover{opacity:1; border-color:var(--stamp);}
+  @media(min-width:900px){nav{display:flex;}}
+  .nav-drop{position:relative;}
+  .nav-drop > span{cursor:pointer; display:flex; align-items:center; gap:5px;}
+  .nav-drop > span::after{content:"▾"; font-size:0.7rem;}
+  .nav-drop-panel{
+    display:none; position:absolute; top:100%; left:0; margin-top:14px;
+    background:var(--white); border:1.5px solid var(--charcoal); box-shadow:5px 5px 0 rgba(31,58,92,0.25);
+    min-width:260px; padding:8px 0; z-index:60;
+  }
+  .nav-drop:hover .nav-drop-panel{display:block;}
+  .nav-drop-panel a{
+    display:block; color:var(--charcoal); padding:10px 18px; font-size:0.86rem; border:none;
+    border-bottom:1px dashed var(--line);
+  }
+  .nav-drop-panel a:last-child{border-bottom:none;}
+  .nav-drop-panel a:hover{background:var(--paper-2); color:var(--stamp);}
+  .nav-drop-panel .tag{
+    font-family:'Space Mono',monospace; font-size:0.66rem; color:var(--gold); margin-left:6px;
+  }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:11px 20px;
+    border-radius:3px;
+    font-weight:700; font-size:0.86rem;
+    text-decoration:none;
+    cursor:pointer; border:none;
+    white-space:nowrap;
+  }
+  .btn-stamp{
+    background:var(--stamp); color:var(--white);
+    box-shadow: 3px 3px 0 var(--stamp-dark);
+    transition: transform .12s ease, box-shadow .12s ease;
+  }
+  .btn-stamp:hover{transform:translate(-1px,-1px); box-shadow:4px 4px 0 var(--stamp-dark);}
+  .btn-outline{
+    background:transparent; color:var(--white); border:1.5px solid rgba(255,255,255,0.5);
+  }
+
+  /* HERO */
+  .hero{padding:64px 0 56px;}
+  .receipt-tag{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'Space Mono',monospace; font-size:0.75rem;
+    color:var(--ink); background:var(--white);
+    border:1px dashed var(--gold); padding:6px 12px; border-radius:2px;
+    margin-bottom:22px;
+  }
+  .receipt-tag::before{content:"●"; color:var(--stamp); font-size:0.6rem;}
+  .hero-grid{display:grid; gap:44px; align-items:center;}
+  @media(min-width:960px){.hero-grid{grid-template-columns:1.15fr 0.85fr;}}
+  h1.hero-title{
+    font-size:clamp(2.1rem, 5vw, 3.15rem);
+    font-weight:900; line-height:1.12; color:var(--ink-dark);
+    margin-bottom:20px;
+  }
+  h1.hero-title em{
+    font-style:normal; color:var(--stamp);
+    text-decoration: underline wavy var(--gold) 2px;
+    text-underline-offset:6px;
+  }
+  .hero-sub{font-size:1.08rem; color:#4A4437; max-width:52ch; margin-bottom:30px;}
+  .hero-ctas{display:flex; flex-wrap:wrap; gap:14px; margin-bottom:26px;}
+  .btn-lg{padding:15px 26px; font-size:0.95rem;}
+  .hero-note{font-size:0.82rem; color:#6b6353; font-family:'Space Mono',monospace;}
+
+  /* receipt card as hero visual */
+  .receipt-card{
+    background:var(--white);
+    border:1.5px solid var(--charcoal);
+    padding:26px 24px 22px;
+    position:relative;
+    box-shadow: 8px 8px 0 rgba(31,58,92,0.14);
+    transform: rotate(-1.3deg);
+  }
+  .receipt-card::after{
+    content:""; position:absolute; inset:8px;
+    border:1px dashed var(--line); pointer-events:none;
+  }
+  .receipt-card h4{font-family:'Space Mono',monospace; font-size:0.78rem; letter-spacing:1px; text-transform:uppercase; color:var(--ink); border-bottom:1px dashed var(--line); padding-bottom:10px; margin-bottom:12px;}
+  .receipt-row{display:flex; justify-content:space-between; font-size:0.86rem; padding:6px 0; border-bottom:1px dotted var(--line);}
+  .receipt-row span:last-child{font-family:'Space Mono',monospace; font-weight:700; color:var(--ink);}
+  .receipt-total{display:flex; justify-content:space-between; padding-top:14px; font-weight:700; font-size:1rem; color:var(--stamp);}
+  .stamp-badge{
+    position:absolute; top:-14px; right:14px;
+    width:74px; height:74px; border-radius:50%;
+    border:2.5px solid var(--stamp); color:var(--stamp);
+    display:flex; align-items:center; justify-content:center;
+    text-align:center; font-family:'Space Mono',monospace; font-weight:700;
+    font-size:0.62rem; line-height:1.15; letter-spacing:0.5px;
+    transform:rotate(12deg);
+    background:rgba(178,58,32,0.05);
+  }
+
+  /* SECTIONS */
+  section{padding:64px 0;}
+  .eyebrow{
+    font-family:'Space Mono',monospace; font-size:0.78rem; letter-spacing:1.5px;
+    color:var(--stamp); text-transform:uppercase; margin-bottom:10px; display:block;
+  }
+  .sec-title{font-size:clamp(1.6rem,3.4vw,2.2rem); font-weight:700; color:var(--ink-dark); margin-bottom:14px;}
+  .sec-sub{color:#5a5344; max-width:62ch; margin-bottom:40px; font-size:1rem;}
+
+  /* TOOL HUB */
+  .category-block{margin-bottom:52px;}
+  .category-head{display:flex; align-items:baseline; gap:12px; margin-bottom:20px;}
+  .category-head h3{font-size:1.25rem; color:var(--ink); font-weight:700;}
+  .category-head .count{font-family:'Space Mono',monospace; font-size:0.78rem; color:var(--gold); border:1px solid var(--gold); padding:2px 8px; border-radius:20px;}
+  .tool-grid{display:grid; gap:18px; grid-template-columns:1fr;}
+  @media(min-width:720px){.tool-grid{grid-template-columns:1fr 1fr;}}
+  .tool-card{
+    background:var(--white);
+    border:1.5px dashed var(--line);
+    padding:22px 20px;
+    position:relative;
+    transition: border-color .15s ease, transform .15s ease;
+  }
+  .tool-card:hover{border-color:var(--stamp); transform:translateY(-3px);}
+  .tool-card .tool-tag{
+    font-family:'Space Mono',monospace; font-size:0.68rem; color:var(--stamp);
+    letter-spacing:0.5px; text-transform:uppercase; margin-bottom:8px; display:inline-block;
+  }
+  .tool-card h4{font-size:1.08rem; font-weight:700; color:var(--ink-dark); margin-bottom:8px;}
+  .tool-card p{font-size:0.9rem; color:#5c5647; margin-bottom:16px;}
+  .tool-card .tool-cta{
+    display:inline-flex; align-items:center; gap:6px;
+    font-size:0.84rem; font-weight:700; color:var(--ink);
+    text-decoration:none; border-bottom:2px solid var(--gold); padding-bottom:2px;
+  }
+
+  /* PRICING */
+  .pricing-grid{display:grid; gap:22px; grid-template-columns:1fr;}
+  @media(min-width:900px){.pricing-grid{grid-template-columns:repeat(3,1fr);}}
+  .price-card{
+    background:var(--white); border:1.5px solid var(--charcoal);
+    padding:28px 24px; position:relative; display:flex; flex-direction:column;
+  }
+  .price-card.featured{border-color:var(--stamp); box-shadow:6px 6px 0 var(--stamp);}
+  .price-featured-tag{
+    position:absolute; top:-13px; left:24px;
+    background:var(--stamp); color:var(--white);
+    font-family:'Space Mono',monospace; font-size:0.68rem; letter-spacing:0.6px;
+    padding:4px 10px; text-transform:uppercase;
+  }
+  .price-card h4{font-size:1.02rem; font-weight:700; color:var(--ink); margin-bottom:6px;}
+  .price-card .price-desc{font-size:0.84rem; color:#6b6353; margin-bottom:18px; min-height:34px;}
+  .price-amount{font-family:'Space Mono',monospace; font-size:2rem; font-weight:700; color:var(--ink-dark); margin-bottom:2px;}
+  .price-amount sup{font-size:0.9rem; font-weight:400; color:#6b6353;}
+  .price-cycle{font-size:0.8rem; color:#8a8270; margin-bottom:20px;}
+  .price-list{list-style:none; margin-bottom:24px; flex-grow:1;}
+  .price-list li{font-size:0.87rem; padding:7px 0; border-bottom:1px dotted var(--line); display:flex; gap:8px;}
+  .price-list li::before{content:"✓"; color:var(--gold); font-weight:700;}
+  .price-btn{width:100%; justify-content:center; text-align:center;}
+
+  /* ABOUT */
+  .about-wrap{display:grid; gap:40px; align-items:center;}
+  @media(min-width:900px){.about-wrap{grid-template-columns:0.8fr 1.2fr;}}
+  .about-frame{
+    background:var(--ink); aspect-ratio:4/5; border:6px solid var(--white);
+    box-shadow:0 0 0 1.5px var(--charcoal), 8px 8px 0 rgba(31,58,92,0.18);
+    display:flex; align-items:center; justify-content:center;
+    color:var(--white); font-family:'Space Mono',monospace; font-size:0.78rem;
+    text-align:center; padding:20px; position:relative;
+  }
+  .about-frame span{opacity:0.6;}
+  .quote{
+    font-family:'Bitter',serif; font-style:italic; font-size:1.18rem;
+    color:var(--ink-dark); line-height:1.65; margin-bottom:22px;
+    border-left:3px solid var(--stamp); padding-left:20px;
+  }
+  .about-meta{display:flex; gap:26px; flex-wrap:wrap; margin-top:24px;}
+  .about-meta div{font-family:'Space Mono',monospace;}
+  .about-meta .num{font-size:1.5rem; font-weight:700; color:var(--stamp); display:block;}
+  .about-meta .lbl{font-size:0.76rem; color:#6b6353;}
+
+  /* COMMIT STRIP */
+  .commit{
+    background:var(--ink); color:var(--white); padding:44px 0;
+  }
+  .commit .wrap{display:grid; gap:26px; grid-template-columns:1fr; text-align:left;}
+  @media(min-width:820px){.commit .wrap{grid-template-columns:repeat(3,1fr);}}
+  .commit-item{border-top:2px solid var(--stamp); padding-top:14px;}
+  .commit-item h5{font-size:0.98rem; margin-bottom:6px;}
+  .commit-item p{font-size:0.85rem; opacity:0.78;}
+
+  /* FOOTER */
+  footer{background:var(--ink-dark); color:rgba(255,255,255,0.72); padding:44px 0 26px; font-size:0.86rem;}
+  .footer-grid{display:grid; gap:28px; grid-template-columns:1fr; margin-bottom:30px;}
+  @media(min-width:760px){.footer-grid{grid-template-columns:1.3fr 1fr 1fr;}}
+  footer h6{color:var(--white); font-size:0.8rem; letter-spacing:0.6px; text-transform:uppercase; font-family:'Space Mono',monospace; margin-bottom:12px;}
+  footer ul{list-style:none;}
+  footer li{margin-bottom:8px;}
+  footer a{text-decoration:none; opacity:0.85;}
+  footer a:hover{opacity:1; text-decoration:underline;}
+  .footer-bottom{border-top:1px solid rgba(255,255,255,0.14); padding-top:18px; display:flex; flex-wrap:wrap; justify-content:space-between; gap:10px; font-size:0.78rem; opacity:0.65;}
+
+  /* MOBILE NAV */
+  .burger{
+    display:flex; flex-direction:column; gap:5px; background:none; border:none;
+    cursor:pointer; padding:6px; margin-right:4px;
+  }
+  .burger span{width:22px; height:2px; background:var(--white); display:block;}
+  @media(min-width:900px){.burger{display:none;}}
+  .mobile-nav{
+    display:none; flex-direction:column; background:var(--ink-dark);
+    border-top:1px solid rgba(255,255,255,0.15);
+  }
+  .mobile-nav.open{display:flex;}
+  .mobile-nav a{
+    color:var(--white); text-decoration:none; padding:14px 24px;
+    border-bottom:1px dashed rgba(255,255,255,0.15); font-size:0.94rem; font-weight:500;
+  }
+  @media(min-width:900px){.mobile-nav{display:none !important;}}
+
+  /* QUICK START */
+  .steps-strip{background:var(--paper-2); padding:44px 0;}
+  .steps-grid{display:grid; gap:20px; grid-template-columns:1fr;}
+  @media(min-width:820px){.steps-grid{grid-template-columns:repeat(3,1fr);}}
+  .step-card{background:var(--white); border:1.5px solid var(--charcoal); padding:22px 20px; position:relative;}
+  .step-num{
+    font-family:'Space Mono',monospace; font-weight:700; font-size:0.8rem;
+    color:var(--white); background:var(--stamp); width:30px; height:30px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; margin-bottom:14px;
+  }
+  .step-card h5{font-size:1rem; font-weight:700; color:var(--ink-dark); margin-bottom:6px;}
+  .step-card p{font-size:0.87rem; color:#5c5647;}
+
+  /* FAQ */
+  .faq-item{border-bottom:1px dashed var(--line); padding:18px 0;}
+  .faq-q{
+    display:flex; justify-content:space-between; align-items:center; gap:16px;
+    cursor:pointer; font-weight:700; color:var(--ink-dark); font-size:0.98rem;
+  }
+  .faq-q::after{content:"+"; font-family:'Space Mono',monospace; font-size:1.3rem; color:var(--stamp); flex-shrink:0;}
+  .faq-item.open .faq-q::after{content:"–";}
+  .faq-a{max-height:0; overflow:hidden; transition:max-height .2s ease;}
+  .faq-item.open .faq-a{max-height:200px;}
+  .faq-a p{font-size:0.9rem; color:#5c5647; padding-top:10px; max-width:64ch;}
+
+  /* SAVE BADGE */
+  .save-badge{
+    display:inline-block; background:var(--gold); color:var(--white);
+    font-family:'Space Mono',monospace; font-size:0.7rem; font-weight:700;
+    padding:3px 9px; border-radius:20px; margin-left:8px; vertical-align:middle;
+  }
+
+  /* FOOTER CTA */
+  .footer-cta{
+    background:var(--stamp); color:var(--white); text-align:center; padding:34px 0;
+  }
+  .footer-cta h3{font-family:'Bitter',serif; font-size:1.4rem; margin-bottom:16px;}
+
+  /* QR MODAL */
+  .qr-overlay{
+    position:fixed; inset:0; background:rgba(21,40,64,0.72);
+    display:none; align-items:center; justify-content:center; z-index:100; padding:20px;
+  }
+  .qr-overlay.open{display:flex;}
+  .qr-box{
+    background:var(--white); max-width:340px; width:100%; padding:26px 24px;
+    border:1.5px solid var(--charcoal); position:relative; text-align:center;
+  }
+  .qr-box h4{font-family:'Bitter',serif; font-size:1.15rem; color:var(--ink-dark); margin-bottom:6px;}
+  .qr-box p{font-size:0.84rem; color:#6b6353; margin-bottom:16px;}
+  .qr-img{
+    width:180px; height:180px; margin:0 auto 16px; border:1.5px dashed var(--line);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Space Mono',monospace; font-size:0.72rem; color:#8a8270; text-align:center; padding:10px;
+  }
+  .qr-close{
+    position:absolute; top:10px; right:12px; background:none; border:none;
+    font-size:1.3rem; cursor:pointer; color:var(--charcoal); line-height:1;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner wrap" style="padding-left:0; padding-right:0;">
+    <div class="logo">
+      <div class="mark">VT</div>
+      <div>Võ Hồng Thắng<small>NGƯỜI TRAO GIẢI PHÁP TINH GỌN</small></div>
+    </div>
+    <nav>
+      <div class="nav-drop">
+        <span>Kho Giải Pháp</span>
+        <div class="nav-drop-panel">
+          <a href="#cat-giao-vien">👩‍🏫 Dành Cho Giáo Viên</a>
+          <a href="#cat-bds">🏠 Dành Cho Môi Giới BĐS</a>
+          <a href="#cat-ho-kd">🏪 Hộ Kinh Doanh &amp; Hành Chính</a>
+          <a href="#cat-solar">☀️ Kỹ Thuật Viên Điện Mặt Trời</a>
+          <a href="#lo-trinh">🚀 Sắp Ra Mắt<span class="tag">MỚI</span></a>
+        </div>
+      </div>
+      <a href="#bat-dau">Hướng Dẫn</a>
+      <a href="#hoi-vien">Hội Viên</a>
+      <a href="#kem-1-1">Kèm 1:1</a>
+    </nav>
+    <div style="display:flex; align-items:center; gap:10px;">
+      <button class="btn btn-stamp" onclick="openQR('Đăng ký hội viên 99.000đ/tháng')" style="padding:9px 14px; font-size:0.8rem;">Đăng Ký</button>
+      <button class="burger" onclick="toggleMobileNav()" aria-label="Mở menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#cat-giao-vien" onclick="toggleMobileNav()">👩‍🏫 Dành Cho Giáo Viên</a>
+    <a href="#cat-bds" onclick="toggleMobileNav()">🏠 Dành Cho Môi Giới BĐS</a>
+    <a href="#cat-ho-kd" onclick="toggleMobileNav()">🏪 Hộ Kinh Doanh &amp; Hành Chính</a>
+    <a href="#cat-solar" onclick="toggleMobileNav()">☀️ Kỹ Thuật Viên Điện Mặt Trời</a>
+    <a href="#lo-trinh" onclick="toggleMobileNav()">🚀 Sắp Ra Mắt</a>
+    <a href="#bat-dau" onclick="toggleMobileNav()">Bắt Đầu Thế Nào</a>
+    <a href="#hoi-vien" onclick="toggleMobileNav()">Hội Viên</a>
+    <a href="#kem-1-1" onclick="toggleMobileNav()">Kèm 1:1</a>
+    <a href="#faq" onclick="toggleMobileNav()">Câu Hỏi Thường Gặp</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="receipt-tag">PHIẾU GIẢI PHÁP SỐ 001 — CÔNG NGHỆ TINH GỌN</span>
+      <h1 class="hero-title">Tự Động Hóa Việc Mỗi Ngày — <em>Tiết Kiệm 2 Giờ</em> Bằng Công Cụ Thực Chiến</h1>
+      <p class="hero-sub">Không cần biết lập trình. Không cần hiểu công nghệ. Chỉ cần bấm một nút trên điện thoại là có ngay đề thi, bảng lãi vay, hay báo cáo công việc — sẵn sàng gửi cho học sinh, khách hàng, hay cấp trên.</p>
+      <div class="hero-ctas">
+        <a href="#hoi-vien" class="btn btn-stamp btn-lg">Tham Gia Hội Viên Chỉ Từ 50K/Tháng</a>
+        <a href="#kho-giai-phap" class="btn btn-outline btn-lg" style="color:var(--ink-dark); border-color:var(--charcoal);">Xem Kho Công Cụ</a>
+      </div>
+      <p class="hero-note">✓ Kích hoạt tức thì bằng VietQR &nbsp; ✓ Huỷ bất cứ lúc nào &nbsp; ✓ Không ràng buộc hợp đồng</p>
+    </div>
+    <div class="receipt-card">
+      <div class="stamp-badge">ĐÃ<br>KÍCH<br>HOẠT</div>
+      <h4>Phiếu Kết Quả Hôm Nay</h4>
+      <div class="receipt-row"><span>Đề kiểm tra 45 câu</span><span>1 phút 40s</span></div>
+      <div class="receipt-row"><span>Bảng lãi vay 20 năm</span><span>38 giây</span></div>
+      <div class="receipt-row"><span>Báo cáo doanh thu ngày</span><span>Tự động 6:00</span></div>
+      <div class="receipt-row"><span>Công văn hành chính</span><span>52 giây</span></div>
+      <div class="receipt-total"><span>Thời gian tiết kiệm</span><span class="mono">~2h10p</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- QUICK START -->
+<div class="steps-strip" id="bat-dau">
+  <div class="wrap">
+    <span class="eyebrow">Không Rành Công Nghệ Cũng Dùng Được</span>
+    <h2 class="sec-title" style="margin-bottom:26px;">Bắt Đầu Chỉ Với 3 Bước</h2>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <h5>Chọn công cụ cần dùng</h5>
+        <p>Xem qua Kho Giải Pháp bên dưới, chọn công cụ đúng với nghề và việc bạn đang cần làm hôm nay.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <h5>Đăng ký hội viên qua VietQR</h5>
+        <p>Quét mã, chuyển khoản đúng nội dung — tài khoản được kích hoạt ngay, không cần chờ duyệt thủ công.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <h5>Làm theo video hướng dẫn 1 phút</h5>
+        <p>Mỗi công cụ có video ngắn cầm tay chỉ việc — xem một lần là dùng được cho những lần sau.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap"><div class="tear"></div></div>
+
+<!-- KHO GIAI PHAP -->
+<section id="kho-giai-phap">
+  <div class="wrap">
+    <span class="eyebrow">Kho Giải Pháp Đa Ngành</span>
+    <h2 class="sec-title">Mỗi Ngành Nghề, Một Bộ Công Cụ Riêng</h2>
+    <p class="sec-sub">Không phải công cụ chung chung. Mỗi tool được đóng gói sát với công việc thật của từng nghề — mở lên là dùng được ngay, không cần chỉnh sửa.</p>
+
+    <div class="category-block" id="cat-giao-vien">
+      <div class="category-head">
+        <h3>Dành Cho Giáo Viên</h3>
+        <span class="count">03 công cụ</span>
+      </div>
+      <div class="tool-grid">
+        <div class="tool-card">
+          <span class="tool-tag">Đã live · Tiểu học</span>
+          <h4>Phiếu Ôn Luyện &amp; Đề Kiểm Tra — Cấp 1</h4>
+          <p>Tạo phiếu ôn luyện nhanh và đề kiểm tra định kỳ chuẩn Thông tư 27/2020 cho lớp 1-5, kèm ma trận, đáp án, in trực tiếp.</p>
+          <a class="tool-cta" href="https://vohongthang.github.io/phieu-on-luyen/" target="_blank" rel="noopener">Dùng ngay ↗</a>
+        </div>
+        <div class="tool-card">
+          <span class="tool-tag">Đã live · THCS</span>
+          <h4>Phiếu Ôn Luyện &amp; Đề Kiểm Tra — Cấp 2</h4>
+          <p>Bản dành cho lớp 6-9, đủ 8 môn (Toán, Văn, Anh, KHTN, Sử-Địa, GDCD, Tin học, Công nghệ), có cả hệ Đại trà và Nâng cao/HSG, đề chuẩn Thông tư 22/2021.</p>
+          <a class="tool-cta" href="https://vohongthang.github.io/phieu-on-luyen-cap2/index.html?stampcheck2" target="_blank" rel="noopener">Dùng ngay ↗</a>
+          <p style="font-size:0.74rem; color:#8a8270; margin-top:8px; margin-bottom:0;">＊ Ngân hàng câu hỏi đang mở rộng dần từng tháng</p>
+        </div>
+        <div class="tool-card">
+          <span class="tool-tag">Soạn giáo án · Nhanh</span>
+          <h4>Tool Soạn Giáo Án Nhanh</h4>
+          <p>Lên dàn bài giáo án theo chuẩn chương trình mới chỉ trong vài phút, thay vì mất cả buổi tối.</p>
+          <a class="tool-cta" href="soan-giao-an-nhanh.html">Dùng ngay →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="category-block" id="cat-bds">
+      <div class="category-head">
+        <h3>Dành Cho Môi Giới Bất Động Sản</h3>
+        <span class="count">02 công cụ</span>
+      </div>
+      <div class="tool-grid">
+        <div class="tool-card">
+          <span class="tool-tag">Tính toán · Zalo</span>
+          <h4>Tool Tính Dòng Tiền &amp; Lãi Vay Ngân Hàng</h4>
+          <p>Nhập giá bán và số tiền vay — xuất bảng gốc và lãi từng tháng, gửi thẳng cho khách qua Zalo trong 1 phút.</p>
+          <a class="tool-cta" href="tinh-lai-vay-bds.html">Dùng ngay →</a>
+        </div>
+        <div class="tool-card">
+          <span class="tool-tag">Kịch bản · Tư vấn</span>
+          <h4>Bộ Kịch Bản Tương Tác</h4>
+          <p>Mẫu tin nhắn chia theo 3 giai đoạn: mới tiếp cận, đang cân nhắc, và chốt deal — đúng tâm lý khách ở từng thời điểm.</p>
+          <a class="tool-cta" href="#hoi-vien">Dùng ngay (cần hội viên) →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="category-block" id="cat-ho-kd">
+      <div class="category-head">
+        <h3>Dành Cho Hộ Kinh Doanh &amp; Hành Chính Địa Phương</h3>
+        <span class="count">02 công cụ</span>
+      </div>
+      <div class="tool-grid">
+        <div class="tool-card">
+          <span class="tool-tag">Telegram · Tự động</span>
+          <h4>Bot Telegram Tự Động</h4>
+          <p>Tự động gửi nhắc việc, báo cáo doanh thu và công việc định kỳ mỗi ngày — không cần ai ngồi làm thủ công.</p>
+          <a class="tool-cta" href="#hoi-vien">Dùng ngay →</a>
+        </div>
+        <div class="tool-card">
+          <span class="tool-tag">Văn bản · Biểu mẫu</span>
+          <h4>Tool Soạn Thảo Văn Bản &amp; Biểu Mẫu</h4>
+          <p>Chuẩn hóa công văn, báo cáo hành chính đúng thể thức chỉ trong vài phút, không cần nhớ mẫu.</p>
+          <a class="tool-cta" href="#hoi-vien">Dùng ngay →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="category-block" style="margin-bottom:0;" id="cat-solar">
+      <div class="category-head">
+        <h3>Dành Cho Kỹ Thuật Viên &amp; Đại Lý Điện Mặt Trời</h3>
+        <span class="count">01 công cụ</span>
+      </div>
+      <div class="tool-grid">
+        <div class="tool-card">
+          <span class="tool-tag">Đã live · Báo giá</span>
+          <h4>Tool Báo Giá Điện Mặt Trời Thông Minh</h4>
+          <p>Nhập công suất hoặc tiền điện hàng tháng — hệ thống tự đề xuất cấu hình, lên BOM thiết bị, tính ROI và xuất báo giá A4 chuyên nghiệp.</p>
+          <a class="tool-cta" href="https://thangvo414345.github.io/solar3t-tools/" target="_blank" rel="noopener">Dùng ngay ↗</a>
+        </div>
+        <div class="tool-card" style="opacity:0.7;">
+          <span class="tool-tag" style="color:var(--ink);">Đang hoàn thiện</span>
+          <h4>Tool Tính Lãi Vay &amp; Phân Tích Đầu Tư NLMT</h4>
+          <p>So sánh lãi suất Quỹ BVMT với ngân hàng thương mại, tính điểm hoà vốn và dòng tiền theo tháng cho nhà đầu tư điện mặt trời.</p>
+          <a class="tool-cta" style="color:#8a8270; border-color:#8a8270; cursor:default;">Sắp public — hiện dùng nội bộ</a>
+        </div>
+      </div>
+    </div>
+
+    <p class="hero-note" style="margin-top:30px;">＊ Kho giải pháp được cập nhật thêm công cụ mới mỗi tháng — hội viên dùng miễn phí toàn bộ.</p>
+  </div>
+</section>
+
+<div class="wrap"><div class="tear"></div></div>
+
+<!-- ROADMAP -->
+<section id="lo-trinh" style="background:var(--paper-2);">
+  <div class="wrap">
+    <span class="eyebrow">Tầm Nhìn Dài Hạn</span>
+    <h2 class="sec-title">Lộ Trình Phát Triển Kho Giải Pháp</h2>
+    <p class="sec-sub">Đây không phải một website tĩnh — kho công cụ sẽ lớn dần theo từng tháng, mở rộng thêm ngành nghề, thêm trợ lý AI, và tự động hóa sâu hơn.</p>
+    <div class="tool-grid" style="grid-template-columns:1fr;">
+      <div class="tool-card" style="display:flex; gap:16px; align-items:flex-start;">
+        <span class="save-badge" style="background:var(--good, #2F6B3E); margin-left:0; flex-shrink:0;">ĐANG DÙNG</span>
+        <div><h4 style="margin-bottom:4px;">Kho công cụ theo ngành</h4><p style="margin-bottom:0;">6 công cụ hiện có cho Giáo viên, Môi giới BĐS, Hộ kinh doanh, Kỹ thuật viên điện mặt trời.</p></div>
+      </div>
+      <div class="tool-card" style="display:flex; gap:16px; align-items:flex-start;">
+        <span class="save-badge" style="margin-left:0; flex-shrink:0;">SẮP RA MẮT</span>
+        <div><h4 style="margin-bottom:4px;">Trợ lý AI trả lời tự động qua Zalo/Telegram</h4><p style="margin-bottom:0;">Trợ lý riêng cho từng ngành — trả lời câu hỏi khách hàng, nhắc việc, tổng hợp báo cáo mà không cần mở web thủ công.</p></div>
+      </div>
+      <div class="tool-card" style="display:flex; gap:16px; align-items:flex-start;">
+        <span class="save-badge" style="background:var(--stamp); margin-left:0; flex-shrink:0;">DỰ KIẾN</span>
+        <div><h4 style="margin-bottom:4px;">Mở rộng thêm ngành nghề mới</h4><p style="margin-bottom:0;">Vận tải, nhà hàng/quán ăn, dịch vụ làm đẹp — theo đề xuất và nhu cầu thực tế từ hội viên.</p></div>
+      </div>
+      <div class="tool-card" style="display:flex; gap:16px; align-items:flex-start;">
+        <span class="save-badge" style="background:var(--ink); margin-left:0; flex-shrink:0;">DÀI HẠN</span>
+        <div><h4 style="margin-bottom:4px;">Chợ App 3T — nền tảng chia sẻ công cụ</h4><p style="margin-bottom:0;">Nơi kỹ thuật viên, giáo viên khác cũng có thể đóng góp hoặc bán công cụ riêng của mình trong cùng hệ sinh thái.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="tear"></div></div>
+
+<!-- PRICING -->
+<section id="hoi-vien">
+  <div class="wrap">
+    <span class="eyebrow">Bảng Giá Hội Viên</span>
+    <h2 class="sec-title">Chọn Mức Đồng Hành Phù Hợp</h2>
+    <p class="sec-sub">Bắt đầu từ mức phí một ly cà phê mỗi tháng. Không quảng cáo hoa mỹ — chỉ tính đúng, đủ, minh bạch.</p>
+
+    <div class="pricing-grid">
+      <div class="price-card">
+        <h4>Gói Tháng</h4>
+        <p class="price-desc">Dùng thử trọn kho công cụ, huỷ bất cứ lúc nào.</p>
+        <div class="price-amount">99.000<sup>đ</sup></div>
+        <div class="price-cycle">mỗi tháng</div>
+        <ul class="price-list">
+          <li>Truy cập toàn bộ công cụ hiện có</li>
+          <li>Cập nhật công cụ mới hàng tháng</li>
+          <li>Nhóm hỗ trợ Telegram riêng</li>
+        </ul>
+        <button class="btn btn-outline price-btn" style="color:var(--ink-dark); border-color:var(--charcoal);" onclick="openQR('Gói Tháng — 99.000đ')">Kích Hoạt Gói Tháng</button>
+      </div>
+
+      <div class="price-card featured">
+        <span class="price-featured-tag">Tiết kiệm nhất</span>
+        <h4>Gói Năm <span class="save-badge">Tiết kiệm 41%</span></h4>
+        <p class="price-desc">Trọn bộ công cụ + kho video hướng dẫn thực chiến.</p>
+        <div class="price-amount">699.000<sup>đ</sup></div>
+        <div class="price-cycle">mỗi năm — chỉ ~58k/tháng, rẻ hơn đóng theo tháng 489.000đ</div>
+        <ul class="price-list">
+          <li>Toàn bộ công cụ + kho video hướng dẫn</li>
+          <li>Ưu tiên hỗ trợ kỹ thuật riêng</li>
+          <li>Khoá giá — không tăng khi hết năm</li>
+        </ul>
+        <button class="btn btn-stamp price-btn" onclick="openQR('Gói Năm — 699.000đ')">Kích Hoạt Gói Năm</button>
+        <p style="font-size:0.76rem; color:#8a8270; text-align:center; margin-top:8px;">Huỷ bất cứ lúc nào, không hỏi lý do</p>
+      </div>
+
+      <div class="price-card" id="kem-1-1">
+        <h4>Kèm 1:1 Thực Chiến</h4>
+        <p class="price-desc">Hướng dẫn trực tiếp đến khi tự xây được hệ thống riêng.</p>
+        <div class="price-amount">5–10<sup>triệu</sup></div>
+        <div class="price-cycle">theo lộ trình / người</div>
+        <ul class="price-list">
+          <li>Kèm trực tiếp cùng Võ Hồng Thắng</li>
+          <li>Xây hệ thống tự động hóa riêng cho nghề của bạn</li>
+          <li>Hỗ trợ đến khi tự vận hành được</li>
+        </ul>
+        <button class="btn btn-outline price-btn" style="color:var(--ink-dark); border-color:var(--charcoal);" onclick="openQR('Đăng ký tư vấn Kèm 1:1')">Đăng Ký Tư Vấn</button>
+      </div>
+    </div>
+
+    <p class="hero-note" style="margin-top:24px;">Ngoài ra có <strong>Gói Chuyển Giao Bộ Giải Pháp</strong> (990.000đ – 2.900.000đ) — nhận trọn workflow đóng gói sẵn, tự vận hành không cần hội viên định kỳ. <a href="#" onclick="openQR('Tư vấn Gói Chuyển Giao'); return false;" style="border-bottom:1px solid var(--gold); font-weight:600;">Liên hệ tư vấn →</a></p>
+  </div>
+</section>
+
+<div class="wrap"><div class="tear"></div></div>
+
+<!-- ABOUT -->
+<section id="huong-dan">
+  <div class="wrap about-wrap">
+    <div class="about-frame">
+      <span>[ ẢNH ĐẠI DIỆN<br>VÕ HỒNG THẮNG ]</span>
+    </div>
+    <div>
+      <span class="eyebrow">Người Đứng Sau Giải Pháp</span>
+      <h2 class="sec-title" style="margin-bottom:20px;">Không Phải Dân Công Nghệ — Chỉ Là Người Chịu Học</h2>
+      <p class="quote">"Từ 10 năm va chạm đường trường, 8 năm thẩm định rủi ro dòng tiền và vận hành kinh doanh thực tế, tôi hiểu rõ giá trị của sự tinh gọn. Ở tuổi 50, tôi chọn tự học và giải mã công nghệ để biến những thứ phức tạp nhất thành công cụ đơn giản nhất phục vụ cuộc sống và gia đình."</p>
+      <p style="color:#5c5647; font-size:0.95rem; max-width:56ch;">Mỗi công cụ trong kho giải pháp đều được xây từ một vấn đề có thật — của chính tôi, hoặc của người tôi trực tiếp hướng dẫn. Không thuật ngữ, không hoa mỹ. Chỉ cần chạm là ra kết quả.</p>
+      <div class="about-meta">
+        <div><span class="num">10+</span><span class="lbl">NĂM VA CHẠM<br>ĐƯỜNG TRƯỜNG</span></div>
+        <div><span class="num">08</span><span class="lbl">NĂM THẨM ĐỊNH<br>RỦI RO DÒNG TIỀN</span></div>
+        <div><span class="num">50</span><span class="lbl">TUỔI BẮT ĐẦU<br>TỰ HỌC CÔNG NGHỆ</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMMIT STRIP -->
+<div class="commit">
+  <div class="wrap">
+    <div class="commit-item">
+      <h5>Không thuật ngữ khó hiểu</h5>
+      <p>Mọi hướng dẫn đều bằng ngôn ngữ đời thường — không API, không lập trình, không lý thuyết công nghệ.</p>
+    </div>
+    <div class="commit-item">
+      <h5>Chạm là ra kết quả</h5>
+      <p>Mỗi công cụ được đóng gói sẵn, mở điện thoại lên là dùng được ngay — không cần cài đặt phức tạp.</p>
+    </div>
+    <div class="commit-item">
+      <h5>Đồng hành thật, không bỏ rơi</h5>
+      <p>Có nhóm hỗ trợ, có người trả lời — không phải mua xong rồi tự bơi một mình.</p>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="wrap" style="max-width:820px;">
+    <span class="eyebrow">Còn Băn Khoăn?</span>
+    <h2 class="sec-title" style="margin-bottom:30px;">Câu Hỏi Thường Gặp</h2>
+
+    <div class="faq-item open">
+      <div class="faq-q" onclick="toggleFaq(this)">Tôi không rành công nghệ, có học được không?</div>
+      <div class="faq-a"><p>Được. Mỗi công cụ chỉ cần bấm và nhập thông tin như điền vào một tờ phiếu — có video hướng dẫn 1 phút đi kèm, và nhóm hỗ trợ Telegram sẵn sàng trả lời khi bạn kẹt bước nào.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Huỷ hội viên có mất phí hay bị ràng buộc không?</div>
+      <div class="faq-a"><p>Không. Không hợp đồng, không phí phạt. Bạn huỷ bất cứ lúc nào ngay trong nhóm hỗ trợ, chỉ mất quyền truy cập từ kỳ thanh toán tiếp theo.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Thanh toán qua VietQR có an toàn không, lỡ chuyển rồi không kích hoạt thì sao?</div>
+      <div class="faq-a"><p>Mã VietQR gắn thẳng với nội dung chuyển khoản có mã hội viên riêng, hệ thống đối soát tự động. Nếu sau vài phút chưa thấy kích hoạt, nhắn ngay nhóm hỗ trợ để được xử lý thủ công.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Công cụ có phù hợp với đúng nghề của tôi không?</div>
+      <div class="faq-a"><p>Kho giải pháp chia riêng theo từng nhóm nghề — giáo viên, môi giới BĐS, hộ kinh doanh — mỗi công cụ được đóng gói sát với công việc thật của nghề đó, không phải công cụ dùng chung chung.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER CTA -->
+<div class="footer-cta">
+  <div class="wrap">
+    <h3>Bắt đầu tiết kiệm 2 giờ mỗi ngày ngay hôm nay</h3>
+    <button class="btn" style="background:var(--white); color:var(--stamp); box-shadow:3px 3px 0 rgba(0,0,0,0.2);" onclick="openQR('Đăng ký hội viên 99.000đ/tháng')">Tham Gia Hội Viên Ngay</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <h6>Võ Hồng Thắng</h6>
+        <p style="max-width:38ch; opacity:0.75;">Người Trao Giải Pháp Tinh Gọn — công nghệ tinh gọn, kết quả thực tế. Đóng gói tự động hóa cho người làm nghề tự do và hộ kinh doanh địa phương.</p>
+      </div>
+      <div>
+        <h6>Điều Hướng</h6>
+        <ul>
+          <li><a href="#kho-giai-phap">Kho Giải Pháp</a></li>
+          <li><a href="#hoi-vien">Hội Viên</a></li>
+          <li><a href="#kem-1-1">Kèm 1:1</a></li>
+        </ul>
+      </div>
+      <div>
+        <h6>Kết Nối</h6>
+        <ul>
+          <li><a href="#">Zalo hỗ trợ</a></li>
+          <li><a href="#">Nhóm Telegram cộng đồng</a></li>
+          <li><a href="#">Fanpage Facebook</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Võ Hồng Thắng — Người Trao Giải Pháp Tinh Gọn.</span>
+      <span>Bản quyền thương hiệu &amp; nội dung được bảo lưu.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- QR MODAL (placeholder — thay bằng mã VietQR động khi tích hợp cổng thanh toán) -->
+<div class="qr-overlay" id="qrOverlay">
+  <div class="qr-box">
+    <button class="qr-close" onclick="closeQR()">✕</button>
+    <h4 id="qrTitle">Kích Hoạt Hội Viên</h4>
+    <p id="qrDesc">Quét mã VietQR bên dưới để thanh toán — hội viên được kích hoạt tự động trong vài giây.</p>
+    <div class="qr-img">[ MÃ VIETQR ĐỘNG<br>sẽ hiển thị ở đây khi<br>tích hợp cổng thanh toán ]</div>
+    <p class="hero-note">Nội dung chuyển khoản sẽ tự điền: mã hội viên của bạn.</p>
+  </div>
+</div>
+
+<script>
+  function openQR(label){
+    document.getElementById('qrTitle').textContent = label || 'Kích Hoạt Hội Viên';
+    document.getElementById('qrOverlay').classList.add('open');
+  }
+  function closeQR(){
+    document.getElementById('qrOverlay').classList.remove('open');
+  }
+  document.getElementById('qrOverlay').addEventListener('click', function(e){
+    if(e.target === this) closeQR();
+  });
+
+  function toggleMobileNav(){
+    document.getElementById('mobileNav').classList.toggle('open');
+  }
+  function toggleFaq(el){
+    el.parentElement.classList.toggle('open');
+  }
+</script>
+
+</body>
+</html>
