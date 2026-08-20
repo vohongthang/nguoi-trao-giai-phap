@@ -53,29 +53,47 @@
   .btn-row{display:flex; gap:12px; flex-wrap:wrap; margin-top:20px;}
 
   #ketQua{display:none;}
-  .van-ban{background:var(--white); border:1.5px solid var(--charcoal); padding:40px 44px; font-family:'Times New Roman',serif;}
-  .vb-header{display:flex; justify-content:space-between; margin-bottom:22px; font-size:0.92rem;}
+  .a4-note{font-size:0.78rem; color:#6b6353; margin-bottom:14px; display:flex; align-items:center; gap:10px; flex-wrap:wrap;}
+  .a4-note .tag{font-family:'Space Mono',monospace; background:var(--paper-2); border:1px dashed var(--gold); padding:4px 10px; border-radius:20px; color:var(--ink); font-size:0.72rem; white-space:nowrap;}
+  .a4-stage{overflow-x:auto; padding:4px 2px 34px;}
+  .van-ban{
+    background:#fff; width:210mm; min-height:297mm; margin:0 auto;
+    padding:20mm 20mm 20mm 30mm;
+    box-shadow:0 0 0 1px var(--charcoal), 10px 10px 0 rgba(31,58,92,0.14);
+    font-family:'Times New Roman',serif; font-size:13pt; color:#000;
+  }
+  .vb-header{display:flex; justify-content:space-between; gap:20px; margin-bottom:22px; font-size:0.92rem;}
+  .vb-header .donvi{flex:1;}
+  .vb-header .donvi b{display:block; text-transform:uppercase;}
+  .vb-header .donvi .so-line{margin-top:4px; font-size:0.86rem;}
+  .vb-header .donvi .trichyeu-inline{font-style:italic; font-size:0.86rem; margin-top:3px; max-width:90%;}
   .vb-header .quochieu{text-align:center; flex:1;}
   .vb-header .quochieu b{display:block; text-transform:uppercase;}
-  .vb-header .quochieu .gach{width:130px; border-top:1px solid var(--charcoal); margin:2px auto 0;}
-  .vb-so{text-align:center; font-size:0.9rem; margin-bottom:22px; font-style:italic;}
+  .vb-header .quochieu .gach{width:130px; border-top:1px solid #000; margin:2px auto 0;}
   .vb-diadanh{text-align:right; font-style:italic; font-size:0.92rem; margin-bottom:20px;}
+  .vb-diadanh-bottom{text-align:center; font-style:italic; font-size:0.92rem; margin-bottom:6px;}
   .vb-tieude{text-align:center; font-size:1.2rem; font-weight:700; text-transform:uppercase; margin-bottom:6px;}
   .vb-trichyeu{text-align:center; font-style:italic; margin-bottom:24px;}
   .vb-kinhgui{margin-bottom:16px;}
   .vb-noidung{white-space:pre-wrap; margin-bottom:26px; text-align:justify;}
-  .vb-ky{display:flex; justify-content:space-between; margin-top:10px;}
+  .vb-ky{display:flex; justify-content:space-between; margin-top:10px; gap:20px;}
+  .vb-ky.only-signature{justify-content:flex-end;}
   .vb-ky .noinhan{font-size:0.82rem; max-width:45%;}
   .vb-ky .noinhan b{display:block; margin-bottom:4px;}
   .vb-ky .chuky{text-align:center; font-size:0.92rem;}
   .vb-ky .chuky .chucvu{font-weight:700; text-transform:uppercase; margin-bottom:60px;}
+  .vb-ky .chuky .ky-hint{font-size:0.76rem; color:#6b6353; margin-bottom:6px; font-style:italic;}
   .editable{outline:none; border-bottom:1px dotted var(--line);}
   .editable:focus{background:#fffbe8;}
 
+  @page{ size:A4; margin:0; }
   @media print{
-    header, .panel, .btn-row, footer{display:none !important;}
+    header, .panel, .a4-note, footer{display:none !important;}
     body{padding:0; background:white;}
-    .van-ban{border:none; padding:0;}
+    body *{visibility:hidden;}
+    .van-ban, .van-ban *{visibility:visible;}
+    .van-ban{position:absolute; top:0; left:0; box-shadow:none; margin:0;}
+    #ketQua, .a4-stage{overflow:visible !important;}
   }
   footer{text-align:center; font-size:0.8rem; color:#8a8270; margin-top:40px;}
 </style>
@@ -107,7 +125,8 @@
       </div>
       <div>
         <label>Số văn bản</label>
-        <input type="text" id="soVanBan" value="01/2026/CV" placeholder="VD: 01/2026/CV">
+        <input type="text" id="soVanBan" value="01/2026/CV-HKD" placeholder="VD: 01/2026/CV-HKD">
+        <p class="hint">Đúng thể thức: số thứ tự/năm ban hành/ký hiệu loại-tên đơn vị viết tắt.</p>
       </div>
     </div>
 
@@ -158,7 +177,10 @@ Kính mong Quý cơ quan xem xét, giải quyết trong thời gian sớm nhất
   </div>
 
   <div id="ketQua">
-    <div class="van-ban" id="vanBanContent"></div>
+    <div class="a4-note"><span class="tag">📄 Khổ A4 — 210 × 297 mm</span> Trên điện thoại, cuộn ngang để xem đúng khổ giấy. Bấm vào nội dung để chỉnh sửa trực tiếp trước khi in hoặc tải về.</div>
+    <div class="a4-stage">
+      <div class="van-ban" id="vanBanContent"></div>
+    </div>
   </div>
 </div>
 
@@ -167,15 +189,29 @@ Kính mong Quý cơ quan xem xét, giải quyết trong thời gian sớm nhất
 <script>
 function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
 
-const TIEU_DE = {
-  'cong-van': 'CÔNG VĂN',
-  'bao-cao': 'BÁO CÁO',
-  'don-xin': 'ĐƠN ĐỀ NGHỊ',
-  'thong-bao': 'THÔNG BÁO'
+// Thể thức theo Nghị định 30/2020/NĐ-CP: riêng CÔNG VĂN không có tên loại văn bản in hoa
+// giữa trang — trích yếu đặt ngay dưới số ký hiệu, bên trái. ĐƠN thì không có mục "Nơi nhận",
+// địa danh/ngày tháng đặt cuối văn bản ngay trên chữ ký thay vì đầu trang.
+const TYPE_CONFIG = {
+  'cong-van':  { tieuDe:'',              trichYeuInline:true,  showNoiNhan:true,  dateAtBottom:false, chucVuDefault:'Chủ hộ kinh doanh' },
+  'bao-cao':   { tieuDe:'BÁO CÁO',       trichYeuInline:false, showNoiNhan:true,  dateAtBottom:false, chucVuDefault:'Chủ hộ kinh doanh' },
+  'thong-bao': { tieuDe:'THÔNG BÁO',     trichYeuInline:false, showNoiNhan:true,  dateAtBottom:false, chucVuDefault:'Chủ hộ kinh doanh' },
+  'don-xin':   { tieuDe:'ĐƠN ĐỀ NGHỊ',   trichYeuInline:false, showNoiNhan:false, dateAtBottom:true,  chucVuDefault:'Người làm đơn' }
 };
+
+// Gợi ý lại "Chức vụ người ký" theo loại văn bản khi người dùng đổi lựa chọn —
+// nhưng không ghi đè nếu người dùng đã tự tay sửa trường này.
+let chucVuTouched = false;
+document.getElementById('chucVu').addEventListener('input', function(){ chucVuTouched = true; });
+document.getElementById('loaiVanBan').addEventListener('change', function(){
+  if(!chucVuTouched){
+    document.getElementById('chucVu').value = (TYPE_CONFIG[this.value] || {}).chucVuDefault || 'Chủ hộ kinh doanh';
+  }
+});
 
 function taoVanBan(){
   const loai = document.getElementById('loaiVanBan').value;
+  const cfg = TYPE_CONFIG[loai] || TYPE_CONFIG['cong-van'];
   const donVi = document.getElementById('tenDonVi').value || '[Tên đơn vị]';
   const so = document.getElementById('soVanBan').value || '...';
   const diaDanh = document.getElementById('diaDanh').value || '..., ngày ... tháng ... năm ...';
@@ -183,14 +219,14 @@ function taoVanBan(){
   const trichYeu = document.getElementById('trichYeu').value || '';
   const noiDung = document.getElementById('noiDungChinh').value || '[Nội dung văn bản]';
   const nguoiKy = document.getElementById('nguoiKy').value || '[Họ tên người ký]';
-  const chucVu = document.getElementById('chucVu').value || '[Chức vụ]';
-  const tieuDe = TIEU_DE[loai] || 'CÔNG VĂN';
+  const chucVu = document.getElementById('chucVu').value || cfg.chucVuDefault;
 
-  const html = `
+  const headerHtml = `
     <div class="vb-header">
-      <div style="flex:1;">
+      <div class="donvi">
         <b>${esc(donVi.toUpperCase())}</b>
-        <div class="hint" style="margin-top:4px;">Số: <span class="editable" contenteditable="true">${esc(so)}</span></div>
+        <div class="so-line">Số: <span class="editable" contenteditable="true">${esc(so)}</span></div>
+        ${cfg.trichYeuInline && trichYeu ? `<div class="trichyeu-inline editable" contenteditable="true">${esc(trichYeu)}</div>` : ''}
       </div>
       <div class="quochieu">
         <b>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</b>
@@ -198,16 +234,16 @@ function taoVanBan(){
         <div class="gach"></div>
       </div>
     </div>
+  `;
 
-    <div class="vb-diadanh editable" contenteditable="true">${esc(diaDanh)}</div>
+  const diaDanhTop = !cfg.dateAtBottom
+    ? `<div class="vb-diadanh editable" contenteditable="true">${esc(diaDanh)}</div>` : '';
 
-    <div class="vb-tieude">${esc(tieuDe)}</div>
-    ${trichYeu ? `<div class="vb-trichyeu editable" contenteditable="true">${esc(trichYeu)}</div>` : ''}
+  const tieuDeHtml = cfg.tieuDe ? `<div class="vb-tieude">${esc(cfg.tieuDe)}</div>` : '';
+  const trichYeuBlock = (!cfg.trichYeuInline && trichYeu)
+    ? `<div class="vb-trichyeu editable" contenteditable="true">${esc(trichYeu)}</div>` : '';
 
-    <div class="vb-kinhgui">Kính gửi: <b class="editable" contenteditable="true">${esc(kinhGui)}</b></div>
-
-    <div class="vb-noidung editable" contenteditable="true">${esc(noiDung)}</div>
-
+  const kyBlock = cfg.showNoiNhan ? `
     <div class="vb-ky">
       <div class="noinhan">
         <b>Nơi nhận:</b>
@@ -218,6 +254,28 @@ function taoVanBan(){
         <div class="editable" contenteditable="true">${esc(nguoiKy)}</div>
       </div>
     </div>
+  ` : `
+    <div class="vb-ky only-signature">
+      <div class="chuky">
+        ${cfg.dateAtBottom ? `<div class="vb-diadanh-bottom editable" contenteditable="true">${esc(diaDanh)}</div>` : ''}
+        <div class="chucvu editable" contenteditable="true">${esc(chucVu)}</div>
+        <div class="ky-hint">(Ký, ghi rõ họ tên)</div>
+        <div class="editable" contenteditable="true">${esc(nguoiKy)}</div>
+      </div>
+    </div>
+  `;
+
+  const html = `
+    ${headerHtml}
+    ${diaDanhTop}
+    ${tieuDeHtml}
+    ${trichYeuBlock}
+
+    <div class="vb-kinhgui">Kính gửi: <b class="editable" contenteditable="true">${esc(kinhGui)}</b></div>
+
+    <div class="vb-noidung editable" contenteditable="true">${esc(noiDung)}</div>
+
+    ${kyBlock}
   `;
   document.getElementById('vanBanContent').innerHTML = html;
   document.getElementById('ketQua').style.display = 'block';
@@ -231,17 +289,25 @@ function taiWord(){
   const htmlDoc = `
     <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
     <head><meta charset="utf-8"><title>${esc(trichYeu)}</title>
+    <!--[if gte mso 9]><xml><w:WordDocument><w:View>Print</w:View><w:Zoom>100</w:Zoom></w:WordDocument></xml><![endif]-->
     <style>
+      @page WordSection1{ size:210mm 297mm; margin:20mm 20mm 20mm 30mm; }
+      div.WordSection1{ page:WordSection1; }
       body{font-family:'Times New Roman',serif; font-size:13pt;}
       .vb-header{display:flex; justify-content:space-between;}
+      .donvi b{text-transform:uppercase;}
+      .so-line{font-size:11pt; margin-top:4px;}
+      .trichyeu-inline{font-style:italic; font-size:12pt; margin-top:3px;}
       .quochieu{text-align:center; flex:1;}
       .vb-tieude{text-align:center; font-weight:bold; text-transform:uppercase; font-size:15pt;}
-      .vb-trichyeu, .vb-diadanh{text-align:center; font-style:italic;}
+      .vb-trichyeu, .vb-diadanh, .vb-diadanh-bottom{text-align:center; font-style:italic;}
       .vb-diadanh{text-align:right;}
       .vb-ky{display:flex; justify-content:space-between; margin-top:20px;}
+      .vb-ky.only-signature{justify-content:flex-end;}
+      .ky-hint{font-size:11pt; font-style:italic;}
       .chuky{text-align:center;}
     </style></head>
-    <body>${content}</body></html>`;
+    <body><div class="WordSection1">${content}</div></body></html>`;
   const blob = new Blob(['﻿', htmlDoc], {type:'application/msword'});
   const link = document.createElement('a');
   link.href = URL.createObjectURL(blob);
