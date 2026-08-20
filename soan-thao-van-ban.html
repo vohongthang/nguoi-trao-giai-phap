@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soạn Thảo Văn Bản & Biểu Mẫu | Người Trao Giải Pháp</title>
+<link rel="icon" type="image/png" href="favicon-32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,700;0,900;1,600&family=Be+Vietnam+Pro:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F6F1E2; --paper-2:#EFE7CF; --ink:#1F3A5C; --ink-dark:#152840;
+    --stamp:#B23A20; --stamp-dark:#8C2B17; --gold:#B8862B; --charcoal:#2B2620;
+    --line:#CBBE9C; --white:#FFFBF3;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:var(--paper); color:var(--charcoal); font-family:'Be Vietnam Pro',sans-serif; line-height:1.5; padding-bottom:60px;}
+  h1,h2,h3{font-family:'Bitter',serif;}
+  .mono{font-family:'Space Mono',monospace;}
+  .wrap{max-width:960px; margin:0 auto; padding:0 20px;}
+  header{background:var(--ink); color:var(--white); padding:18px 0; border-bottom:3px solid var(--stamp); margin-bottom:34px;}
+  header .wrap{display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;}
+  .brand{font-weight:700; font-size:0.95rem;}
+  .brand small{display:block; font-size:0.68rem; opacity:0.75; font-family:'Space Mono',monospace;}
+  .back{color:var(--white); text-decoration:none; font-size:0.82rem; border-bottom:1px dashed rgba(255,255,255,0.5);}
+
+  h1.title{font-size:clamp(1.5rem,4vw,2rem); color:var(--ink-dark); margin-bottom:8px;}
+  .subtitle{color:#5c5647; margin-bottom:30px; max-width:64ch;}
+
+  .panel{background:var(--white); border:1.5px solid var(--charcoal); padding:24px 22px; margin-bottom:24px; position:relative;}
+  .panel::after{content:""; position:absolute; inset:6px; border:1px dashed var(--line); pointer-events:none;}
+  .panel h3{font-size:0.85rem; text-transform:uppercase; letter-spacing:1px; font-family:'Space Mono',monospace; color:var(--stamp); margin-bottom:18px; border-bottom:1px dashed var(--line); padding-bottom:10px;}
+
+  .grid{display:grid; gap:16px; grid-template-columns:1fr;}
+  @media(min-width:700px){.grid.cols-2{grid-template-columns:1fr 1fr;}}
+  @media(min-width:700px){.grid.cols-3{grid-template-columns:1fr 1fr 1fr;}}
+
+  label{display:block; font-size:0.84rem; font-weight:600; margin-bottom:6px; color:var(--ink-dark);}
+  input[type=text], select, textarea{
+    width:100%; padding:11px 12px; border:1.5px solid var(--line); background:var(--paper);
+    font-family:'Be Vietnam Pro',sans-serif; font-size:0.92rem; color:var(--charcoal); border-radius:2px;
+  }
+  textarea{resize:vertical; min-height:64px; font-family:'Be Vietnam Pro',sans-serif;}
+  input:focus, select:focus, textarea:focus{outline:none; border-color:var(--stamp);}
+  .hint{font-size:0.76rem; color:#8a8270; margin-top:5px;}
+
+  .btn{
+    display:inline-flex; align-items:center; gap:8px; padding:13px 22px; border-radius:3px;
+    font-weight:700; font-size:0.9rem; cursor:pointer; border:none; text-decoration:none;
+  }
+  .btn-stamp{background:var(--stamp); color:var(--white); box-shadow:3px 3px 0 var(--stamp-dark);}
+  .btn-outline{background:transparent; color:var(--ink-dark); border:1.5px solid var(--charcoal);}
+  .btn-row{display:flex; gap:12px; flex-wrap:wrap; margin-top:20px;}
+
+  #ketQua{display:none;}
+  .van-ban{background:var(--white); border:1.5px solid var(--charcoal); padding:40px 44px; font-family:'Times New Roman',serif;}
+  .vb-header{display:flex; justify-content:space-between; margin-bottom:22px; font-size:0.92rem;}
+  .vb-header .quochieu{text-align:center; flex:1;}
+  .vb-header .quochieu b{display:block; text-transform:uppercase;}
+  .vb-header .quochieu .gach{width:130px; border-top:1px solid var(--charcoal); margin:2px auto 0;}
+  .vb-so{text-align:center; font-size:0.9rem; margin-bottom:22px; font-style:italic;}
+  .vb-diadanh{text-align:right; font-style:italic; font-size:0.92rem; margin-bottom:20px;}
+  .vb-tieude{text-align:center; font-size:1.2rem; font-weight:700; text-transform:uppercase; margin-bottom:6px;}
+  .vb-trichyeu{text-align:center; font-style:italic; margin-bottom:24px;}
+  .vb-kinhgui{margin-bottom:16px;}
+  .vb-noidung{white-space:pre-wrap; margin-bottom:26px; text-align:justify;}
+  .vb-ky{display:flex; justify-content:space-between; margin-top:10px;}
+  .vb-ky .noinhan{font-size:0.82rem; max-width:45%;}
+  .vb-ky .noinhan b{display:block; margin-bottom:4px;}
+  .vb-ky .chuky{text-align:center; font-size:0.92rem;}
+  .vb-ky .chuky .chucvu{font-weight:700; text-transform:uppercase; margin-bottom:60px;}
+  .editable{outline:none; border-bottom:1px dotted var(--line);}
+  .editable:focus{background:#fffbe8;}
+
+  @media print{
+    header, .panel, .btn-row, footer{display:none !important;}
+    body{padding:0; background:white;}
+    .van-ban{border:none; padding:0;}
+  }
+  footer{text-align:center; font-size:0.8rem; color:#8a8270; margin-top:40px;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="brand">Võ Hồng Thắng — Người Trao Giải Pháp<small>CÔNG CỤ HỘ KINH DOANH &amp; HÀNH CHÍNH</small></div>
+    <a class="back" href="index.html">← Về trang chủ</a>
+  </div>
+</header>
+
+<div class="wrap">
+  <h1 class="title">Soạn Thảo Văn Bản &amp; Biểu Mẫu</h1>
+  <p class="subtitle">Chọn loại văn bản, điền nội dung chính — nhận ngay bản đúng thể thức hành chính, sẵn sàng in hoặc tải về Word chỉnh sửa thêm.</p>
+
+  <div class="panel">
+    <h3>① Chọn Loại Văn Bản</h3>
+    <div class="grid cols-2">
+      <div>
+        <label>Loại văn bản</label>
+        <select id="loaiVanBan">
+          <option value="cong-van">Công văn đề nghị</option>
+          <option value="bao-cao">Báo cáo công việc</option>
+          <option value="don-xin">Đơn xin phép / Đề nghị</option>
+          <option value="thong-bao">Thông báo nội bộ</option>
+        </select>
+      </div>
+      <div>
+        <label>Số văn bản</label>
+        <input type="text" id="soVanBan" value="01/2026/CV" placeholder="VD: 01/2026/CV">
+      </div>
+    </div>
+
+    <h3 style="margin-top:22px;">② Thông Tin Chung</h3>
+    <div class="grid cols-2">
+      <div>
+        <label>Tên hộ kinh doanh / đơn vị</label>
+        <input type="text" id="tenDonVi" value="Hộ Kinh Doanh Ánh Dương" placeholder="VD: Hộ Kinh Doanh...">
+      </div>
+      <div>
+        <label>Địa danh, ngày tháng</label>
+        <input type="text" id="diaDanh" value="Nghệ An, ngày 20 tháng 8 năm 2026" placeholder="VD: Nghệ An, ngày ... tháng ... năm ...">
+      </div>
+    </div>
+    <div class="grid cols-2" style="margin-top:16px;">
+      <div>
+        <label>Kính gửi</label>
+        <input type="text" id="kinhGui" value="UBND Phường ... / Chi cục Thuế khu vực ..." placeholder="Nơi nhận chính">
+      </div>
+      <div>
+        <label>Trích yếu (tóm tắt 1 dòng)</label>
+        <input type="text" id="trichYeu" value="V/v đề nghị xác nhận địa điểm kinh doanh" placeholder="VD: V/v đề nghị...">
+      </div>
+    </div>
+    <div style="margin-top:16px;">
+      <label>Nội dung chính</label>
+      <textarea id="noiDungChinh" style="min-height:140px;">Căn cứ nhu cầu hoạt động kinh doanh thực tế tại địa chỉ nêu trên, Hộ kinh doanh kính đề nghị Quý cơ quan xem xét, xác nhận địa điểm kinh doanh để hoàn thiện thủ tục theo quy định.
+
+Kính mong Quý cơ quan xem xét, giải quyết trong thời gian sớm nhất.</textarea>
+    </div>
+    <div class="grid cols-2" style="margin-top:16px;">
+      <div>
+        <label>Người ký (họ tên)</label>
+        <input type="text" id="nguoiKy" value="Nguyễn Văn A" placeholder="Họ và tên">
+      </div>
+      <div>
+        <label>Chức vụ người ký</label>
+        <input type="text" id="chucVu" value="Chủ hộ kinh doanh" placeholder="VD: Chủ hộ kinh doanh">
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-stamp" onclick="taoVanBan()">Tạo Văn Bản</button>
+      <button class="btn btn-outline" onclick="taiWord()">📄 Tải Về Word (.doc)</button>
+      <button class="btn btn-outline" onclick="window.print()">🖨 In / Lưu PDF</button>
+    </div>
+    <p class="hint">💡 Sau khi tạo, bấm vào phần nội dung để chỉnh sửa trực tiếp trên trang trước khi tải về hoặc in.</p>
+  </div>
+
+  <div id="ketQua">
+    <div class="van-ban" id="vanBanContent"></div>
+  </div>
+</div>
+
+<footer>Mẫu văn bản tham khảo theo thể thức hành chính thông dụng — thuộc kho giải pháp của Võ Hồng Thắng.</footer>
+
+<script>
+function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
+
+const TIEU_DE = {
+  'cong-van': 'CÔNG VĂN',
+  'bao-cao': 'BÁO CÁO',
+  'don-xin': 'ĐƠN ĐỀ NGHỊ',
+  'thong-bao': 'THÔNG BÁO'
+};
+
+function taoVanBan(){
+  const loai = document.getElementById('loaiVanBan').value;
+  const donVi = document.getElementById('tenDonVi').value || '[Tên đơn vị]';
+  const so = document.getElementById('soVanBan').value || '...';
+  const diaDanh = document.getElementById('diaDanh').value || '..., ngày ... tháng ... năm ...';
+  const kinhGui = document.getElementById('kinhGui').value || '[Nơi nhận]';
+  const trichYeu = document.getElementById('trichYeu').value || '';
+  const noiDung = document.getElementById('noiDungChinh').value || '[Nội dung văn bản]';
+  const nguoiKy = document.getElementById('nguoiKy').value || '[Họ tên người ký]';
+  const chucVu = document.getElementById('chucVu').value || '[Chức vụ]';
+  const tieuDe = TIEU_DE[loai] || 'CÔNG VĂN';
+
+  const html = `
+    <div class="vb-header">
+      <div style="flex:1;">
+        <b>${esc(donVi.toUpperCase())}</b>
+        <div class="hint" style="margin-top:4px;">Số: <span class="editable" contenteditable="true">${esc(so)}</span></div>
+      </div>
+      <div class="quochieu">
+        <b>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</b>
+        <div>Độc lập – Tự do – Hạnh phúc</div>
+        <div class="gach"></div>
+      </div>
+    </div>
+
+    <div class="vb-diadanh editable" contenteditable="true">${esc(diaDanh)}</div>
+
+    <div class="vb-tieude">${esc(tieuDe)}</div>
+    ${trichYeu ? `<div class="vb-trichyeu editable" contenteditable="true">${esc(trichYeu)}</div>` : ''}
+
+    <div class="vb-kinhgui">Kính gửi: <b class="editable" contenteditable="true">${esc(kinhGui)}</b></div>
+
+    <div class="vb-noidung editable" contenteditable="true">${esc(noiDung)}</div>
+
+    <div class="vb-ky">
+      <div class="noinhan">
+        <b>Nơi nhận:</b>
+        <div class="editable" contenteditable="true">- Như trên;<br>- Lưu: VT.</div>
+      </div>
+      <div class="chuky">
+        <div class="chucvu editable" contenteditable="true">${esc(chucVu)}</div>
+        <div class="editable" contenteditable="true">${esc(nguoiKy)}</div>
+      </div>
+    </div>
+  `;
+  document.getElementById('vanBanContent').innerHTML = html;
+  document.getElementById('ketQua').style.display = 'block';
+  document.getElementById('ketQua').scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function taiWord(){
+  if(document.getElementById('ketQua').style.display === 'none'){ taoVanBan(); }
+  const content = document.getElementById('vanBanContent').innerHTML;
+  const trichYeu = document.getElementById('trichYeu').value || 'van-ban';
+  const htmlDoc = `
+    <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+    <head><meta charset="utf-8"><title>${esc(trichYeu)}</title>
+    <style>
+      body{font-family:'Times New Roman',serif; font-size:13pt;}
+      .vb-header{display:flex; justify-content:space-between;}
+      .quochieu{text-align:center; flex:1;}
+      .vb-tieude{text-align:center; font-weight:bold; text-transform:uppercase; font-size:15pt;}
+      .vb-trichyeu, .vb-diadanh{text-align:center; font-style:italic;}
+      .vb-diadanh{text-align:right;}
+      .vb-ky{display:flex; justify-content:space-between; margin-top:20px;}
+      .chuky{text-align:center;}
+    </style></head>
+    <body>${content}</body></html>`;
+  const blob = new Blob(['﻿', htmlDoc], {type:'application/msword'});
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = 'van-ban-' + trichYeu.toLowerCase().replace(/[^a-z0-9]+/g,'-').substring(0,40) + '.doc';
+  link.click();
+}
+
+taoVanBan();
+</script>
+</body>
+</html>
