@@ -387,6 +387,7 @@ display:none; align-items:center; justify-content:center; z-index:100; padding:2
 .qr-box{
 background:var(--white); max-width:340px; width:100%; padding:26px 24px;
 border:1.5px solid var(--charcoal); position:relative; text-align:center;
+max-height:90vh; overflow-y:auto;
 }
 .qr-box h4{font-family:'Bitter',serif; font-size:1.15rem; color:var(--ink-dark); margin-bottom:6px;}
 .qr-box p{font-size:0.84rem; color:#6b6353; margin-bottom:16px;}
@@ -874,7 +875,7 @@ font-size:1.3rem; cursor:pointer; color:var(--charcoal); line-height:1;
 <div>
 <h6>Kết Nối</h6>
 <ul>
-<li><a href="https://zalo.me/0977687227" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:8px;"><img src="zalo-qr.png" alt="Quét mã Zalo hỗ trợ" style="width:32px; height:32px; border-radius:4px; flex-shrink:0; background:var(--white);">Zalo hỗ trợ</a></li>
+<li><a href="https://zalo.me/g/iwirgoj2rx4nqit1o7wg" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:8px;"><img src="zalo-qr.png" alt="Quét mã nhóm Zalo hỗ trợ" style="width:32px; height:32px; border-radius:4px; flex-shrink:0; background:var(--white);">Nhóm Zalo hỗ trợ</a></li>
 <li><a href="#">Nhóm Telegram cộng đồng</a></li>
 <li><a href="#">Fanpage Facebook</a></li>
 </ul>
@@ -892,9 +893,14 @@ font-size:1.3rem; cursor:pointer; color:var(--charcoal); line-height:1;
 <div class="qr-box">
 <button class="qr-close" onclick="closeQR()">✕</button>
 <h4 id="qrTitle">Đăng Ký Hội Viên</h4>
-<p id="qrDesc">Quét mã VietQR bên dưới để thanh toán, sau đó nhắn nhóm hỗ trợ kèm ảnh chụp giao dịch để được kích hoạt.</p>
+<p id="qrDesc" style="margin-bottom:4px;"><strong>Bước 1</strong> — Quét mã VietQR bên dưới để thanh toán.</p>
 <img class="qr-img" src="vietqr-bidv.png" alt="Mã VietQR chuyển khoản BIDV — Võ Hồng Thắng">
 <p class="hero-note">BIDV · 0977687227 · VO HONG THANG<br>Ghi rõ họ tên hoặc số điện thoại trong nội dung chuyển khoản để dễ đối chiếu.</p>
+<div style="margin-top:18px; padding-top:16px; border-top:1px dashed var(--line);">
+<p style="margin-bottom:10px;"><strong>Bước 2</strong> — Vào nhóm Zalo, gửi ảnh chụp giao dịch để được kích hoạt.</p>
+<img class="qr-img" style="width:130px; height:130px;" src="zalo-qr.png" alt="Mã QR nhóm Zalo hỗ trợ">
+<a href="https://zalo.me/g/iwirgoj2rx4nqit1o7wg" target="_blank" rel="noopener" style="display:inline-block; font-weight:600; border-bottom:1px solid var(--gold); color:var(--ink-dark); text-decoration:none;">Vào Nhóm Zalo Hỗ Trợ →</a>
+</div>
 </div>
 </div>
 
