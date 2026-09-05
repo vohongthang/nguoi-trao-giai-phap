@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soạn Giáo Án Nhanh | Người Trao Giải Pháp</title>
+<link rel="icon" type="image/png" href="favicon-32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,700;0,900;1,600&family=Be+Vietnam+Pro:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F6F1E2; --paper-2:#EFE7CF; --ink:#1F3A5C; --ink-dark:#152840;
+    --stamp:#B23A20; --stamp-dark:#8C2B17; --gold:#B8862B; --charcoal:#2B2620;
+    --line:#CBBE9C; --white:#FFFBF3;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:var(--paper); color:var(--charcoal); font-family:'Be Vietnam Pro',sans-serif; line-height:1.5; padding-bottom:60px;}
+  h1,h2,h3{font-family:'Bitter',serif;}
+  .mono{font-family:'Space Mono',monospace;}
+  .wrap{max-width:960px; margin:0 auto; padding:0 20px;}
+  header{background:var(--ink); color:var(--white); padding:18px 0; border-bottom:3px solid var(--stamp); margin-bottom:34px;}
+  header .wrap{display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;}
+  .brand{font-weight:700; font-size:0.95rem;}
+  .brand small{display:block; font-size:0.68rem; opacity:0.75; font-family:'Space Mono',monospace;}
+  .back{color:var(--white); text-decoration:none; font-size:0.82rem; border-bottom:1px dashed rgba(255,255,255,0.5);}
+
+  h1.title{font-size:clamp(1.5rem,4vw,2rem); color:var(--ink-dark); margin-bottom:8px;}
+  .subtitle{color:#5c5647; margin-bottom:30px; max-width:64ch;}
+
+  .panel{background:var(--white); border:1.5px solid var(--charcoal); padding:24px 22px; margin-bottom:24px; position:relative;}
+  .panel::after{content:""; position:absolute; inset:6px; border:1px dashed var(--line); pointer-events:none;}
+  .panel h3{font-size:0.85rem; text-transform:uppercase; letter-spacing:1px; font-family:'Space Mono',monospace; color:var(--stamp); margin-bottom:18px; border-bottom:1px dashed var(--line); padding-bottom:10px;}
+
+  .grid{display:grid; gap:16px; grid-template-columns:1fr;}
+  @media(min-width:700px){.grid.cols-2{grid-template-columns:1fr 1fr;}}
+  @media(min-width:700px){.grid.cols-3{grid-template-columns:1fr 1fr 1fr;}}
+
+  label{display:block; font-size:0.84rem; font-weight:600; margin-bottom:6px; color:var(--ink-dark);}
+  input[type=text], input[type=number], select, textarea{
+    width:100%; padding:11px 12px; border:1.5px solid var(--line); background:var(--paper);
+    font-family:'Be Vietnam Pro',sans-serif; font-size:0.92rem; color:var(--charcoal); border-radius:2px;
+  }
+  textarea{resize:vertical; min-height:64px; font-family:'Be Vietnam Pro',sans-serif;}
+  input:focus, select:focus, textarea:focus{outline:none; border-color:var(--stamp);}
+  .hint{font-size:0.76rem; color:#8a8270; margin-top:5px;}
+
+  .btn{
+    display:inline-flex; align-items:center; gap:8px; padding:13px 22px; border-radius:3px;
+    font-weight:700; font-size:0.9rem; cursor:pointer; border:none; text-decoration:none;
+  }
+  .btn-stamp{background:var(--stamp); color:var(--white); box-shadow:3px 3px 0 var(--stamp-dark);}
+  .btn-outline{background:transparent; color:var(--ink-dark); border:1.5px solid var(--charcoal);}
+  .btn-row{display:flex; gap:12px; flex-wrap:wrap; margin-top:20px;}
+
+  #ketQua{display:none;}
+  .giao-an{background:var(--white); border:1.5px solid var(--charcoal); padding:34px 30px;}
+  .giao-an h2.ten-bai{text-align:center; font-size:1.3rem; color:var(--ink-dark); text-transform:uppercase; margin-bottom:6px;}
+  .giao-an .meta-line{text-align:center; font-size:0.86rem; color:#6b6353; margin-bottom:26px; font-family:'Space Mono',monospace;}
+  .muc{margin-bottom:22px;}
+  .muc > h4{font-size:1rem; font-weight:700; color:var(--stamp); margin-bottom:10px; border-bottom:1px dashed var(--line); padding-bottom:6px;}
+  .muc ol, .muc ul{margin-left:22px; margin-bottom:8px;}
+  .muc li{margin-bottom:5px; font-size:0.92rem;}
+  .hoat-dong{border-left:3px solid var(--gold); padding:12px 16px; margin-bottom:14px; background:var(--paper-2);}
+  .hoat-dong h5{font-size:0.94rem; color:var(--ink-dark); margin-bottom:8px;}
+  .hoat-dong .field{margin-bottom:6px; font-size:0.87rem;}
+  .hoat-dong .field b{color:var(--ink);}
+  .editable{outline:none; border-bottom:1px dotted var(--line); min-height:1.4em;}
+  .editable:focus{background:#fffbe8;}
+
+  @media print{
+    header, .panel, .btn-row, footer{display:none !important;}
+    body{padding:0; background:white;}
+    .giao-an{border:none; padding:0;}
+  }
+  footer{text-align:center; font-size:0.8rem; color:#8a8270; margin-top:40px;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="brand">Võ Hồng Thắng — Người Trao Giải Pháp<small>CÔNG CỤ DÀNH CHO GIÁO VIÊN</small></div>
+    <a class="back" href="index.html">← Về trang chủ</a>
+  </div>
+</header>
+
+<div class="wrap">
+  <h1 class="title">Soạn Giáo Án Nhanh</h1>
+  <p class="subtitle">Nhập thông tin bài học — nhận ngay khung giáo án đầy đủ theo cấu trúc Công văn 5512/BGDĐT (4 hoạt động chuẩn). Bạn chỉ cần điền nội dung cụ thể vào chỗ trống, không phải dựng khung từ đầu.</p>
+
+  <div class="panel">
+    <h3>① Thông Tin Bài Học</h3>
+    <div class="grid cols-2">
+      <div>
+        <label>Môn học</label>
+        <input type="text" id="monHoc" value="Ngữ văn" placeholder="VD: Toán, Ngữ văn, KHTN...">
+      </div>
+      <div>
+        <label>Lớp</label>
+        <input type="text" id="lop" value="7" placeholder="VD: 7">
+      </div>
+    </div>
+    <div class="grid cols-2" style="margin-top:16px;">
+      <div>
+        <label>Tên bài học</label>
+        <input type="text" id="tenBai" value="Ca dao, dân ca — những câu hát về tình cảm gia đình" placeholder="Nhập đúng tên bài trong SGK">
+      </div>
+      <div>
+        <label>Số tiết</label>
+        <input type="number" id="soTiet" value="2" min="1" max="10">
+      </div>
+    </div>
+    <div class="grid cols-2" style="margin-top:16px;">
+      <div>
+        <label>Kiến thức trọng tâm cần đạt (mỗi ý 1 dòng)</label>
+        <textarea id="kienThuc">Hiểu nội dung, ý nghĩa của các câu hát về tình cảm gia đình
+Nhận biết một số biện pháp nghệ thuật tiêu biểu trong ca dao</textarea>
+      </div>
+      <div>
+        <label>Thiết bị dạy học &amp; học liệu</label>
+        <textarea id="thietBi">SGK, SGV, máy chiếu/bảng phụ
+Phiếu học tập, video/hình ảnh minh hoạ liên quan chủ đề bài học</textarea>
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-stamp" onclick="taoGiaoAn()">Tạo Khung Giáo Án</button>
+      <button class="btn btn-outline" onclick="taiWord()">📄 Tải Về Word (.doc)</button>
+      <button class="btn btn-outline" onclick="window.print()">🖨 In / Lưu PDF</button>
+    </div>
+    <p class="hint">💡 Sau khi tạo, bạn có thể bấm trực tiếp vào các dòng có gạch chân chấm bên dưới để chỉnh sửa nội dung ngay trên trang trước khi tải về.</p>
+  </div>
+
+  <div id="ketQua">
+    <div class="giao-an" id="giaoAnContent">
+      <!-- nội dung sinh ra bằng JS -->
+    </div>
+  </div>
+</div>
+
+<footer>Khung giáo án tham khảo theo cấu trúc Công văn 5512/BGDĐT-GDTrH — thuộc kho giải pháp của Võ Hồng Thắng.</footer>
+
+<script>
+// ============================================================
+// GOI_Y_GIAO_AN — dữ liệu gợi ý theo LỚP (6-9) + MÔN học
+// Áp dụng: THCS, sách Kết nối tri thức, năm học 2026–2027
+// Dán đoạn này vào ĐẦU thẻ <script> trong soan-giao-an-nhanh.html
+// (trước function esc(s){...})
+// ============================================================
+const GOI_Y_GIAO_AN = {
+  "6": {
+    "Ngữ văn": {
+      "nangLuc": [
+        "Đọc hiểu văn bản truyện dân gian, thơ, kí, văn bản thông tin theo đặc trưng thể loại",
+        "Viết được đoạn văn, bài văn kể chuyện, tả cảnh/người, biểu cảm ngắn theo yêu cầu",
+        "Nói và nghe: kể lại, trình bày ý kiến ngắn, mạch lạc trước lớp",
+        "Cảm nhận vẻ đẹp ngôn từ, hình ảnh, biện pháp tu từ trong văn bản"
+      ],
+      "phamChat": [
+        "Nhân ái: biết yêu thương, chia sẻ với bạn bè, người thân qua nhân vật, câu chuyện",
+        "Yêu nước: trân trọng quê hương, cội nguồn qua các văn bản viết về đất nước",
+        "Chăm chỉ: rèn thói quen đọc sách, luyện viết thường xuyên",
+        "Trách nhiệm: giữ gìn sự trong sáng của tiếng Việt"
+      ],
+      "yeuCauCanDat": [
+        "Nhận biết cốt truyện, nhân vật, chi tiết tiêu biểu trong truyện dân gian, truyện đồng thoại",
+        "Nhận biết vần, nhịp, hình ảnh trong thơ (đặc biệt thể thơ lục bát)",
+        "Nhận biết đặc điểm văn bản thông tin (nhan đề, sa pô, đề mục, hình ảnh minh họa)",
+        "Viết được bài văn kể lại trải nghiệm, tả cảnh, tả người có bố cục rõ 3 phần",
+        "Tóm tắt được nội dung chính của văn bản đã đọc bằng lời của mình"
+      ],
+      "hoatDong": {
+        "moDau": "Cho xem tranh/nghe nhạc hoặc kể 1 tình huống gần gũi tuổi học trò → đặt câu hỏi gợi liên tưởng đến chủ đề bài đọc",
+        "hinhThanh": "Chia 3 phần: (1) Đọc – tìm hiểu chung (tác giả, thể loại, bố cục); (2) Đọc hiểu chi tiết (nhân vật, hình ảnh, biện pháp nghệ thuật); (3) Tổng kết nội dung – nghệ thuật",
+        "luyenTap": {
+          "nhanBiet": "xác định thể loại, nhân vật, vần nhịp",
+          "thongHieu": "giải thích ý nghĩa chi tiết, hình ảnh nghệ thuật",
+          "vanDung": "viết đoạn văn cảm nhận ngắn (5-7 câu)",
+          "vanDungCao": "viết đoạn văn/thơ sáng tạo theo mẫu, liên hệ tác phẩm cùng chủ đề"
+        },
+        "vanDung": "Viết đoạn nhật kí/thư ngắn chia sẻ cảm xúc cá nhân liên quan chủ đề bài học, hoặc kể lại cho người thân nghe"
+      }
+    },
+    "Toán": {
+      "nangLuc": [
+        "Tư duy và lập luận toán học: nhận biết quy tắc, tính chất số học cơ bản",
+        "Giải quyết vấn đề toán học: vận dụng vào bài toán thực tế gần gũi",
+        "Mô hình hóa toán học: chuyển tình huống thực tế thành phép tính, sơ đồ đơn giản",
+        "Sử dụng công cụ, phương tiện học toán: thước, compa, máy tính cầm tay cơ bản"
+      ],
+      "phamChat": [
+        "Chăm chỉ: kiên trì luyện tính toán, làm bài tập đều đặn",
+        "Trung thực: tự làm bài, trung thực khi kiểm tra kết quả",
+        "Trách nhiệm: hoàn thành nhiệm vụ cá nhân và nhóm đúng hạn"
+      ],
+      "yeuCauCanDat": [
+        "Thực hiện được các phép tính trong tập số tự nhiên, số nguyên",
+        "Nhận biết và thực hiện phép tính với phân số, số thập phân",
+        "Nhận biết hình học phẳng cơ bản: điểm, đường thẳng, đoạn thẳng, góc, tam giác, hình vuông/chữ nhật",
+        "Thu thập, phân loại, biểu diễn dữ liệu thống kê đơn giản (biểu đồ tranh, biểu đồ cột)",
+        "Nhận biết khái niệm xác suất thực nghiệm ở mức đơn giản"
+      ],
+      "hoatDong": {
+        "moDau": "Đưa ra tình huống/bài toán vui gắn thực tế (mua sắm, đo đạc, chia nhóm) để HS dự đoán kết quả trước khi học",
+        "hinhThanh": "Chia 3 phần: (1) Khái niệm – định nghĩa mới; (2) Quy tắc/tính chất và ví dụ minh họa; (3) Luyện áp dụng quy tắc qua ví dụ mẫu",
+        "luyenTap": {
+          "nhanBiet": "nhắc lại khái niệm, quy tắc",
+          "thongHieu": "làm bài tập áp dụng trực tiếp công thức",
+          "vanDung": "giải bài toán có lời văn liên quan thực tế",
+          "vanDungCao": "bài toán tổng hợp nhiều kiến thức, có yếu tố tư duy logic"
+        },
+        "vanDung": "Yêu cầu HS đo đạc/tính toán một tình huống thật trong gia đình (chi tiêu, diện tích phòng...) rồi báo cáo kết quả"
+      }
+    },
+    "KHTN": {
+      "nangLuc": [
+        "Nhận thức khoa học tự nhiên: trình bày kiến thức cơ bản về chất, năng lượng, sự sống",
+        "Tìm hiểu tự nhiên: quan sát, đặt câu hỏi, thực hiện thí nghiệm đơn giản",
+        "Vận dụng kiến thức, kĩ năng đã học vào giải thích hiện tượng gần gũi"
+      ],
+      "phamChat": [
+        "Trung thực: ghi nhận đúng kết quả quan sát, thí nghiệm",
+        "Chăm chỉ: tích cực thực hành, tìm hiểu tự nhiên",
+        "Trách nhiệm: bảo vệ môi trường, an toàn khi làm thí nghiệm"
+      ],
+      "yeuCauCanDat": [
+        "Nhận biết một số chất và tính chất vật lí, sự chuyển thể của chất",
+        "Nêu được đặc điểm cơ bản của tế bào, sự đa dạng sinh vật",
+        "Nhận biết các dạng năng lượng và sự chuyển hóa năng lượng đơn giản",
+        "Trình bày kiến thức cơ bản về Trái Đất, bầu trời (chuyển động nhìn thấy của Mặt Trời, Mặt Trăng)"
+      ],
+      "hoatDong": {
+        "moDau": "Đưa ra hiện tượng tự nhiên gần gũi (nước sôi, cây nảy mầm, ngày–đêm) và hỏi \"Vì sao lại như vậy?\"",
+        "hinhThanh": "Chia 3 phần: (1) Quan sát – mô tả hiện tượng; (2) Thí nghiệm/tìm hiểu số liệu; (3) Rút ra kết luận khoa học",
+        "luyenTap": {
+          "nhanBiet": "gọi tên hiện tượng, khái niệm",
+          "thongHieu": "giải thích nguyên nhân hiện tượng",
+          "vanDung": "áp dụng giải thích tình huống mới tương tự",
+          "vanDungCao": "thiết kế thí nghiệm nhỏ kiểm chứng giả thuyết"
+        },
+        "vanDung": "Giao nhiệm vụ quan sát/thí nghiệm nhỏ tại nhà, ghi chép và báo cáo kết quả"
+      }
+    },
+    "Lịch sử": {
+      "nangLuc": [
+        "Tìm hiểu lịch sử: khai thác thông tin từ tư liệu, hình ảnh, lược đồ",
+        "Nhận thức và tư duy lịch sử: trình bày diễn biến, nguyên nhân – kết quả sự kiện",
+        "Vận dụng kiến thức, kĩ năng đã học: liên hệ quá khứ – hiện tại"
+      ],
+      "phamChat": [
+        "Yêu nước: tự hào về lịch sử dựng nước, giữ nước của dân tộc",
+        "Trách nhiệm: có ý thức giữ gìn di sản, di tích lịch sử",
+        "Trung thực: tôn trọng sự thật lịch sử, tư liệu gốc"
+      ],
+      "yeuCauCanDat": [
+        "Trình bày quá trình hình thành các quốc gia cổ đại (phương Đông, phương Tây)",
+        "Nêu nét chính về nguồn gốc, đời sống người Việt cổ (Văn Lang, Âu Lạc)",
+        "Trình bày chính sách đô hộ và các cuộc đấu tranh thời Bắc thuộc",
+        "Sử dụng được lược đồ, trục thời gian để trình bày sự kiện lịch sử"
+      ],
+      "hoatDong": {
+        "moDau": "Cho xem hình ảnh di tích/hiện vật cổ, đặt câu hỏi \"Em biết gì về...?\" để dẫn vào bài",
+        "hinhThanh": "Chia 3 phần: (1) Bối cảnh – thời gian – không gian; (2) Diễn biến chính (dùng lược đồ, tư liệu); (3) Ý nghĩa – tác động lịch sử",
+        "luyenTap": {
+          "nhanBiet": "nêu thời gian, tên sự kiện, nhân vật",
+          "thongHieu": "trình bày nguyên nhân, diễn biến",
+          "vanDung": "giải thích ý nghĩa sự kiện với hiện tại",
+          "vanDungCao": "so sánh, đánh giá sự kiện với giai đoạn khác"
+        },
+        "vanDung": "Tìm hiểu 1 di tích/lễ hội liên quan ở địa phương, viết đoạn giới thiệu ngắn"
+      }
+    },
+    "Địa lí": {
+      "nangLuc": [
+        "Nhận thức khoa học địa lí: trình bày đặc điểm tự nhiên cơ bản",
+        "Tìm hiểu địa lí: đọc bản đồ, biểu đồ, tranh ảnh địa lí",
+        "Vận dụng kiến thức, kĩ năng đã học vào thực tiễn địa phương"
+      ],
+      "phamChat": [
+        "Yêu thiên nhiên: có ý thức bảo vệ môi trường sống",
+        "Trách nhiệm: tôn trọng quy luật tự nhiên, tiết kiệm tài nguyên",
+        "Chăm chỉ: tích cực quan sát, thu thập thông tin địa lí"
+      ],
+      "yeuCauCanDat": [
+        "Xác định vị trí, hình dạng Trái Đất trong hệ Mặt Trời; đọc được bản đồ đơn giản",
+        "Trình bày đặc điểm các thành phần tự nhiên: khí quyển, thủy quyển, sinh quyển",
+        "Nêu đặc điểm dân số, phân bố dân cư cơ bản trên thế giới",
+        "Sử dụng kí hiệu, tỉ lệ bản đồ để xác định vị trí, khoảng cách"
+      ],
+      "hoatDong": {
+        "moDau": "Cho quan sát bản đồ/ảnh vệ tinh, đặt câu hỏi nhận diện vị trí, hiện tượng tự nhiên",
+        "hinhThanh": "Chia 3 phần: (1) Khái niệm – đặc điểm chung; (2) Phân tích qua bản đồ/biểu đồ/số liệu; (3) Nguyên nhân – hệ quả",
+        "luyenTap": {
+          "nhanBiet": "đọc kí hiệu, số liệu trên bản đồ",
+          "thongHieu": "giải thích đặc điểm, nguyên nhân",
+          "vanDung": "xác định vị trí, tính khoảng cách thực tế",
+          "vanDungCao": "phân tích mối liên hệ giữa các yếu tố tự nhiên"
+        },
+        "vanDung": "Vẽ sơ đồ/mô tả đặc điểm tự nhiên nơi em sinh sống, đối chiếu kiến thức đã học"
+      }
+    },
+    "Tiếng Anh": {
+      "nangLuc": [
+        "Nghe hiểu hội thoại, đoạn ngắn quen thuộc, tốc độ chậm, rõ",
+        "Nói: giao tiếp đơn giản về bản thân, gia đình, trường lớp",
+        "Đọc hiểu đoạn văn ngắn, quen thuộc, xác định thông tin chính",
+        "Viết được câu, đoạn ngắn theo mẫu về chủ đề quen thuộc"
+      ],
+      "phamChat": [
+        "Chăm chỉ: luyện tập từ vựng, phát âm thường xuyên",
+        "Trách nhiệm: hoàn thành bài tập, hợp tác nhóm khi thực hành nói",
+        "Tôn trọng sự khác biệt văn hóa qua các chủ đề quốc tế"
+      ],
+      "yeuCauCanDat": [
+        "Sử dụng vốn từ, cấu trúc câu cơ bản (hiện tại đơn, hiện tại tiếp diễn) bậc A1–A2",
+        "Nghe và nói được các mẫu câu giao tiếp thường ngày (chào hỏi, giới thiệu, hỏi đường...)",
+        "Đọc hiểu văn bản ngắn, đơn giản về gia đình, trường học, sở thích",
+        "Viết được đoạn văn ngắn 4–6 câu theo chủ đề quen thuộc"
+      ],
+      "hoatDong": {
+        "moDau": "",
+        "hinhThanh": "Chia 3 phần: (1) Presentation từ vựng/ngữ pháp mới; (2) Practice có kiểm soát; (3) Production – luyện nói/viết theo mẫu",
+        "luyenTap": {
+          "nhanBiet": "nhận diện từ/cấu trúc qua tranh, âm thanh",
+          "thongHieu": "điền từ, chọn đáp án đúng",
+          "vanDung": "đặt câu, hội thoại theo mẫu",
+          "vanDungCao": "tạo đoạn hội thoại/đoạn viết tự do theo chủ đề"
+        },
+        "vanDung": "Thực hành hỏi–đáp với người thân bằng tiếng Anh theo chủ đề bài học, ghi âm/video lại"
+      }
+    },
+    "GDCD": {
+      "nangLuc": [
+        "Điều chỉnh hành vi: nhận biết chuẩn mực đạo đức, pháp luật phù hợp lứa tuổi",
+        "Phát triển bản thân: tự nhận thức điểm mạnh/yếu, lập kế hoạch tự lập",
+        "Tìm hiểu và tham gia hoạt động kinh tế – xã hội: nhận biết tình huống nguy hiểm, cách ứng phó"
+      ],
+      "phamChat": [
+        "Trách nhiệm: có ý thức tự chăm sóc bản thân, tiết kiệm",
+        "Trung thực: thật thà trong lời nói, việc làm",
+        "Nhân ái: tôn trọng quyền trẻ em, chia sẻ với người xung quanh"
+      ],
+      "yeuCauCanDat": [
+        "Nêu biểu hiện của tự nhận thức bản thân, tự lập, tự chủ",
+        "Nêu ý nghĩa và cách thực hiện tiết kiệm trong cuộc sống",
+        "Nhận biết tình huống nguy hiểm và cách ứng phó, tự bảo vệ bản thân",
+        "Nêu các quyền cơ bản của trẻ em và cách thực hiện quyền đó"
+      ],
+      "hoatDong": {
+        "moDau": "Đưa ra tình huống/câu chuyện ngắn gần gũi để HS nhận xét, bày tỏ quan điểm ban đầu",
+        "hinhThanh": "Chia 3 phần: (1) Khái niệm – biểu hiện; (2) Vì sao cần thực hiện (ý nghĩa); (3) Cách rèn luyện/thực hiện",
+        "luyenTap": {
+          "nhanBiet": "kể tên biểu hiện đúng/sai",
+          "thongHieu": "giải thích vì sao nên/không nên",
+          "vanDung": "xử lí tình huống giả định cụ thể",
+          "vanDungCao": "xây dựng kế hoạch rèn luyện bản thân theo chủ đề"
+        },
+        "vanDung": "Thực hiện 1 việc làm cụ thể áp dụng bài học trong 1 tuần, ghi lại kết quả/cảm nhận"
+      }
+    }
+  },
+  "7": {
+    "Ngữ văn": {
+      "nangLuc": [
+        "Đọc hiểu truyện, thơ, tùy bút/tản văn, truyện ngụ ngôn, truyện khoa học viễn tưởng theo đặc trưng thể loại",
+        "Viết được bài văn kể, biểu cảm, nghị luận (về một vấn đề đời sống) và văn bản thuyết minh ngắn",
+        "Nói và nghe: trình bày ý kiến, tóm tắt nội dung trao đổi, tranh luận có lí lẽ",
+        "Nhận biết và phân tích tác dụng của biện pháp tu từ, mạch cảm xúc trong văn bản"
+      ],
+      "phamChat": [
+        "Nhân ái: trân trọng tình cảm gia đình, bạn bè, cội nguồn qua văn bản",
+        "Trách nhiệm: có ý thức với lời nói, hành động của bản thân",
+        "Chăm chỉ: rèn luyện đọc – viết thường xuyên, kiên trì với bài khó",
+        "Trung thực: nêu ý kiến cá nhân thẳng thắn, có căn cứ"
+      ],
+      "yeuCauCanDat": [
+        "Nhận biết và phân tích được chủ đề, thông điệp, tình cảm trong truyện, thơ",
+        "Nhận biết đặc điểm truyện ngụ ngôn, tục ngữ và bài học rút ra",
+        "Nhận biết yếu tố tưởng tượng trong truyện khoa học viễn tưởng",
+        "Viết được bài văn nghị luận trình bày ý kiến về một vấn đề đời sống, có lí lẽ – bằng chứng",
+        "Tóm tắt được văn bản theo yêu cầu về độ dài khác nhau"
+      ],
+      "hoatDong": {
+        "moDau": "Nêu câu hỏi/tình huống đời sống gần gũi lứa tuổi hoặc chiếu đoạn clip ngắn liên quan chủ đề bài học để khơi gợi ý kiến ban đầu",
+        "hinhThanh": "Chia 3 phần: (1) Đọc – nhận diện thể loại, bố cục; (2) Phân tích chi tiết nội dung – nghệ thuật/lí lẽ – bằng chứng; (3) Tổng kết chủ đề, thông điệp",
+        "luyenTap": {
+          "nhanBiet": "gọi tên thể loại, chi tiết, lí lẽ",
+          "thongHieu": "giải thích ý nghĩa chi tiết/lí lẽ",
+          "vanDung": "viết đoạn văn trình bày ý kiến cá nhân",
+          "vanDungCao": "viết bài nghị luận ngắn phản biện một ý kiến khác"
+        },
+        "vanDung": "Trao đổi với người thân/bạn về vấn đề đặt ra trong bài, ghi lại ý kiến hai phía"
+      }
+    },
+    "Toán": {
+      "nangLuc": [
+        "Tư duy và lập luận toán học: suy luận với số hữu tỉ, biểu thức đại số",
+        "Giải quyết vấn đề toán học: lập biểu thức, phương trình từ tình huống thực tế",
+        "Mô hình hóa toán học: dùng hình vẽ, sơ đồ biểu diễn quan hệ hình học, đại lượng tỉ lệ",
+        "Giao tiếp toán học: trình bày lời giải rõ ràng, có lập luận từng bước"
+      ],
+      "phamChat": [
+        "Chăm chỉ: luyện tập đều, không nản với bài toán nhiều bước",
+        "Trung thực: trình bày đúng quá trình làm bài, không sao chép",
+        "Trách nhiệm: hoàn thành nhiệm vụ nhóm, chia sẻ công việc công bằng"
+      ],
+      "yeuCauCanDat": [
+        "Thực hiện phép tính với số hữu tỉ, số vô tỉ (căn bậc hai) cơ bản",
+        "Nhận biết và vận dụng đại lượng tỉ lệ thuận, tỉ lệ nghịch",
+        "Thực hiện các phép tính cộng, trừ, nhân, chia đơn thức, đa thức một biến",
+        "Nhận biết tính chất tam giác, hai tam giác bằng nhau, quan hệ giữa các yếu tố trong tam giác",
+        "Thu thập, biểu diễn và phân tích dữ liệu thống kê ở mức cao hơn lớp 6"
+      ],
+      "hoatDong": {
+        "moDau": "Đặt bài toán thực tế có yếu tố tỉ lệ (pha nước, tốc độ, tiền công) để HS ước lượng kết quả trước",
+        "hinhThanh": "Chia 3 phần: (1) Khái niệm/tính chất mới; (2) Chứng minh hoặc ví dụ minh họa từng bước; (3) Luyện áp dụng qua bài mẫu có lời giải",
+        "luyenTap": {
+          "nhanBiet": "nhận diện dạng biểu thức/tam giác đặc biệt",
+          "thongHieu": "áp dụng công thức, tính chất trực tiếp",
+          "vanDung": "giải bài toán thực tế nhiều bước",
+          "vanDungCao": "bài toán chứng minh hoặc kết hợp nhiều kiến thức"
+        },
+        "vanDung": "Đo đạc/tính tỉ lệ một vật thể thực tế (bản đồ, mô hình thu nhỏ) và giải thích cách tính"
+      }
+    },
+    "KHTN": {
+      "nangLuc": [
+        "Nhận thức khoa học tự nhiên: trình bày kiến thức về chất, năng lượng, cơ thể sống ở mức sâu hơn lớp 6",
+        "Tìm hiểu tự nhiên: thiết kế và thực hiện thí nghiệm đơn giản, thu thập – xử lí số liệu",
+        "Vận dụng kiến thức, kĩ năng đã học để giải thích hiện tượng tự nhiên, kĩ thuật gần gũi"
+      ],
+      "phamChat": [
+        "Trung thực: báo cáo đúng số liệu thí nghiệm dù kết quả không như dự đoán",
+        "Chăm chỉ: kiên trì thực hành, tìm hiểu nguyên nhân hiện tượng",
+        "Trách nhiệm: an toàn thí nghiệm, bảo vệ môi trường, tiết kiệm năng lượng"
+      ],
+      "yeuCauCanDat": [
+        "Trình bày tính chất và biến đổi của một số chất, phản ứng hóa học đơn giản",
+        "Nêu được các đại lượng lực, áp suất, ánh sáng, âm thanh và ứng dụng thực tế",
+        "Trình bày quá trình trao đổi chất, sinh trưởng, sinh sản ở sinh vật",
+        "Trình bày kiến thức cơ bản về thời tiết, khí hậu và Trái Đất – bầu trời"
+      ],
+      "hoatDong": {
+        "moDau": "Đưa hiện tượng/kĩ thuật gần gũi (đèn pin, tiếng vang, cây lớn nhanh khi bón phân) và hỏi nguyên nhân",
+        "hinhThanh": "Chia 3 phần: (1) Quan sát – dự đoán; (2) Thí nghiệm/thu thập số liệu theo nhóm; (3) Phân tích, rút ra quy luật/kết luận",
+        "luyenTap": {
+          "nhanBiet": "gọi tên đại lượng, hiện tượng",
+          "thongHieu": "giải thích cơ chế, nguyên nhân",
+          "vanDung": "tính toán/áp dụng vào tình huống mới",
+          "vanDungCao": "đề xuất giải pháp kĩ thuật đơn giản dựa trên kiến thức đã học"
+        },
+        "vanDung": "Thực hiện 1 thí nghiệm/khảo sát nhỏ ở nhà liên quan chủ đề, chụp ảnh/ghi số liệu báo cáo"
+      }
+    },
+    "Lịch sử": {
+      "nangLuc": [
+        "Tìm hiểu lịch sử: khai thác tư liệu, bản đồ, hiện vật thời trung đại",
+        "Nhận thức và tư duy lịch sử: so sánh, đánh giá các triều đại, sự kiện",
+        "Vận dụng kiến thức, kĩ năng đã học: liên hệ bài học lịch sử với hiện tại"
+      ],
+      "phamChat": [
+        "Yêu nước: tự hào truyền thống đấu tranh giữ nước thời Lý – Trần",
+        "Trách nhiệm: có ý thức bảo tồn di sản văn hóa dân tộc",
+        "Trung thực: đánh giá công bằng vai trò các nhân vật, triều đại lịch sử"
+      ],
+      "yeuCauCanDat": [
+        "Trình bày nét chính về các quốc gia phong kiến Đông Nam Á, Trung Quốc, Ấn Độ thời trung đại",
+        "Trình bày sự hình thành, phát triển các triều đại Ngô – Đinh – Tiền Lê – Lý – Trần – Hồ",
+        "Nêu được các cuộc kháng chiến chống ngoại xâm thời Lý – Trần và ý nghĩa lịch sử",
+        "Sử dụng lược đồ, trục thời gian phân tích diễn biến các cuộc kháng chiến"
+      ],
+      "hoatDong": {
+        "moDau": "Giới thiệu hình ảnh/câu nói nổi tiếng của nhân vật lịch sử liên quan, đặt câu hỏi khơi gợi",
+        "hinhThanh": "Chia 3 phần: (1) Bối cảnh hình thành triều đại/sự kiện; (2) Diễn biến chính qua lược đồ, tư liệu; (3) Ý nghĩa, bài học lịch sử",
+        "luyenTap": {
+          "nhanBiet": "nêu tên triều đại, nhân vật, thời gian",
+          "thongHieu": "trình bày nguyên nhân, kết quả",
+          "vanDung": "giải thích ý nghĩa với công cuộc xây dựng – bảo vệ đất nước hiện nay",
+          "vanDungCao": "so sánh chính sách giữa các triều đại"
+        },
+        "vanDung": "Tìm hiểu 1 nhân vật/di tích lịch sử thời kỳ đã học ở địa phương, thuyết trình ngắn"
+      }
+    },
+    "Địa lí": {
+      "nangLuc": [
+        "Nhận thức khoa học địa lí: trình bày đặc điểm tự nhiên – dân cư – kinh tế các châu lục",
+        "Tìm hiểu địa lí: đọc, phân tích bản đồ, biểu đồ, bảng số liệu châu lục",
+        "Vận dụng kiến thức, kĩ năng đã học: so sánh đặc điểm giữa các khu vực, châu lục"
+      ],
+      "phamChat": [
+        "Yêu thiên nhiên: tôn trọng sự đa dạng cảnh quan, khí hậu toàn cầu",
+        "Trách nhiệm: ý thức về biến đổi khí hậu, bảo vệ tài nguyên",
+        "Chăm chỉ: kiên trì phân tích số liệu, bản đồ nhiều chi tiết"
+      ],
+      "yeuCauCanDat": [
+        "Trình bày đặc điểm tự nhiên, dân cư châu Á, châu Âu",
+        "Trình bày đặc điểm tự nhiên, dân cư châu Phi, châu Mỹ, châu Đại Dương, châu Nam Cực",
+        "Phân tích được đặc điểm kinh tế – xã hội tiêu biểu của mỗi châu lục qua số liệu",
+        "Đọc, khai thác thông tin từ bản đồ, biểu đồ, Atlas địa lí"
+      ],
+      "hoatDong": {
+        "moDau": "Cho xem hình ảnh đặc trưng (cảnh quan, con người) của châu lục sắp học, đoán tên châu lục",
+        "hinhThanh": "Chia 3 phần: (1) Vị trí – phạm vi; (2) Đặc điểm tự nhiên qua bản đồ; (3) Dân cư – kinh tế qua số liệu, biểu đồ",
+        "luyenTap": {
+          "nhanBiet": "xác định vị trí, tên địa danh trên bản đồ",
+          "thongHieu": "giải thích đặc điểm tự nhiên, dân cư",
+          "vanDung": "so sánh 2 khu vực/châu lục",
+          "vanDungCao": "phân tích nguyên nhân sự khác biệt phát triển kinh tế giữa các khu vực"
+        },
+        "vanDung": "Sưu tầm hình ảnh/tư liệu về 1 quốc gia thuộc châu lục đã học, giới thiệu ngắn trước lớp"
+      }
+    },
+    "Tiếng Anh": {
+      "nangLuc": [
+        "Nghe hiểu hội thoại, đoạn văn dài hơn lớp 6, chủ đề mở rộng (sở thích, du lịch, sức khỏe)",
+        "Nói: trao đổi, hỏi–đáp về trải nghiệm cá nhân, đưa ra lời khuyên đơn giản",
+        "Đọc hiểu văn bản dài hơn, xác định ý chính và chi tiết hỗ trợ",
+        "Viết được đoạn văn có liên kết ý theo chủ đề quen thuộc"
+      ],
+      "phamChat": [
+        "Chăm chỉ: mở rộng vốn từ, luyện 4 kỹ năng đều đặn",
+        "Trách nhiệm: chuẩn bị bài, hợp tác hiệu quả trong hoạt động nhóm/cặp",
+        "Tôn trọng sự đa dạng văn hóa qua các chủ đề quốc tế"
+      ],
+      "yeuCauCanDat": [
+        "Sử dụng cấu trúc ngữ pháp mở rộng (thì quá khứ đơn, so sánh, câu điều kiện loại 1) bậc A2",
+        "Nghe, nói được các mẫu câu trao đổi thông tin, đưa ra ý kiến/lời khuyên",
+        "Đọc hiểu đoạn văn 150–200 từ, trả lời câu hỏi thông tin chi tiết",
+        "Viết đoạn văn 8–10 câu có câu chủ đề và câu triển khai mạch lạc"
+      ],
+      "hoatDong": {
+        "moDau": "",
+        "hinhThanh": "Chia 3 phần: (1) Presentation từ vựng/ngữ pháp; (2) Controlled practice; (3) Freer practice – nói/viết có hướng dẫn",
+        "luyenTap": {
+          "nhanBiet": "nhận diện từ/cấu trúc trong ngữ cảnh",
+          "thongHieu": "hoàn thành bài tập điền từ, nối câu",
+          "vanDung": "thực hành hội thoại theo tình huống cho sẵn",
+          "vanDungCao": "viết/nói tự do mở rộng chủ đề, có quan điểm cá nhân"
+        },
+        "vanDung": "Ghi âm đoạn hội thoại/đoạn kể ngắn bằng tiếng Anh về chủ đề bài học, chia sẻ với nhóm"
+      }
+    },
+    "GDCD": {
+      "nangLuc": [
+        "Điều chỉnh hành vi: nhận biết và thực hiện chuẩn mực trong học tập, ứng xử với tiền, mạng xã hội",
+        "Phát triển bản thân: rèn tính tự giác, tích cực trong học tập",
+        "Tìm hiểu và tham gia hoạt động kinh tế – xã hội: nhận biết quản lí tiền, phòng chống bạo lực học đường"
+      ],
+      "phamChat": [
+        "Trách nhiệm: giữ chữ tín, có kế hoạch quản lí tiền hợp lí",
+        "Nhân ái: tôn trọng sự khác biệt, phòng chống bạo lực học đường",
+        "Trung thực: giữ đúng lời hứa, cam kết với bản thân và người khác"
+      ],
+      "yeuCauCanDat": [
+        "Nêu biểu hiện của học tập tự giác, tích cực và cách rèn luyện",
+        "Giải thích được ý nghĩa của giữ chữ tín và cách thực hiện",
+        "Nêu nguyên tắc quản lí tiền hiệu quả, tránh chi tiêu lãng phí",
+        "Nhận biết biểu hiện, nguyên nhân, cách phòng chống bạo lực học đường"
+      ],
+      "hoatDong": {
+        "moDau": "Kể 1 tình huống thực tế (bạn hứa mà không giữ lời, chi tiêu quá tay...) để HS nhận xét",
+        "hinhThanh": "Chia 3 phần: (1) Khái niệm – biểu hiện; (2) Nguyên nhân/hậu quả nếu không thực hiện; (3) Cách rèn luyện, ứng xử phù hợp",
+        "luyenTap": {
+          "nhanBiet": "liệt kê biểu hiện đúng/sai",
+          "thongHieu": "giải thích hậu quả của hành vi sai",
+          "vanDung": "xử lí tình huống giả định",
+          "vanDungCao": "xây dựng kế hoạch cá nhân áp dụng bài học (VD: kế hoạch quản lí tiền 1 tháng)"
+        },
+        "vanDung": "Áp dụng bài học vào 1 tình huống thật trong tuần, viết lại trải nghiệm và bài học rút ra"
+      }
+    }
+  },
+  "8": {
+    "Ngữ văn": {
+      "nangLuc": [
+        "Đọc hiểu truyện lịch sử, thơ Đường luật, văn nghị luận trung đại (hịch, cáo), thơ trào phúng, hài kịch",
+        "Viết được bài văn nghị luận về vấn đề đời sống/tác phẩm văn học, đoạn văn phân tích thơ",
+        "Nói và nghe: thuyết trình, tranh biện có lập luận, phản hồi ý kiến người khác",
+        "Phân tích được giá trị nội dung – nghệ thuật, giọng điệu trào phúng, hình ảnh biểu tượng"
+      ],
+      "phamChat": [
+        "Yêu nước: tự hào truyền thống văn học – lịch sử dân tộc qua văn bản trung đại",
+        "Trách nhiệm: có chính kiến, biết bảo vệ quan điểm bằng lí lẽ",
+        "Trung thực: đánh giá tác phẩm khách quan, không rập khuôn",
+        "Nhân ái: cảm thông với thân phận con người qua tác phẩm hiện thực"
+      ],
+      "yeuCauCanDat": [
+        "Nhận biết đặc điểm truyện lịch sử, thơ Đường luật (thất ngôn bát cú, tứ tuyệt)",
+        "Nhận biết đặc điểm văn nghị luận trung đại: hịch, cáo, chiếu, biểu",
+        "Nhận biết yếu tố trào phúng, hài hước trong thơ, truyện cười, hài kịch",
+        "Viết được bài văn nghị luận có luận điểm, luận cứ, dẫn chứng rõ ràng",
+        "Phân tích được tác dụng của biện pháp tu từ, giọng điệu trong văn bản"
+      ],
+      "hoatDong": {
+        "moDau": "Đặt câu hỏi liên hệ giai đoạn lịch sử hoặc chiếu hình ảnh/video tư liệu gắn bối cảnh ra đời văn bản",
+        "hinhThanh": "Chia 3 phần: (1) Đọc – xác định bối cảnh, thể loại; (2) Phân tích luận điểm/hình ảnh/giọng điệu; (3) Tổng kết giá trị nội dung – nghệ thuật",
+        "luyenTap": {
+          "nhanBiet": "xác định thể loại, luận điểm chính",
+          "thongHieu": "giải thích lí lẽ, tác dụng nghệ thuật",
+          "vanDung": "viết đoạn văn nghị luận ngắn theo luận điểm cho sẵn",
+          "vanDungCao": "viết bài nghị luận hoàn chỉnh, có phản biện ý kiến trái chiều"
+        },
+        "vanDung": "Liên hệ bài học/thông điệp văn bản với một vấn đề thời sự hoặc tình huống thực tế hiện nay"
+      }
+    },
+    "Toán": {
+      "nangLuc": [
+        "Tư duy và lập luận toán học: chứng minh hình học, biến đổi biểu thức đại số phức tạp hơn",
+        "Giải quyết vấn đề toán học: giải phương trình, bất phương trình từ bài toán thực tế",
+        "Mô hình hóa toán học: biểu diễn hàm số bậc nhất qua đồ thị, bảng giá trị",
+        "Sử dụng công cụ, phương tiện học toán: vẽ đồ thị, tính xác suất bằng bảng/sơ đồ cây"
+      ],
+      "phamChat": [
+        "Chăm chỉ: rèn luyện kỹ năng biến đổi, chứng minh nhiều bước",
+        "Trung thực: trình bày đúng quá trình suy luận, không chép đáp số",
+        "Trách nhiệm: hoàn thành bài tập đúng hạn, làm việc nhóm hiệu quả"
+      ],
+      "yeuCauCanDat": [
+        "Thực hiện phép tính, phân tích đa thức thành nhân tử, rút gọn phân thức đại số",
+        "Nhận biết và vẽ được đồ thị hàm số bậc nhất y = ax + b",
+        "Nhận biết tứ giác, hình đặc biệt (thang, bình hành, chữ nhật, thoi, vuông) và tính chất",
+        "Nhận biết tam giác đồng dạng và ứng dụng đo gián tiếp",
+        "Tính được xác suất của một số biến cố đơn giản trong thực tế"
+      ],
+      "hoatDong": {
+        "moDau": "Đưa bài toán thực tế cần lập phương trình/hàm số (tính tiền điện, quãng đường) để HS thử đoán cách giải",
+        "hinhThanh": "Chia 3 phần: (1) Khái niệm/định lí mới; (2) Ví dụ minh họa có lời giải mẫu; (3) Luyện tập áp dụng theo bước",
+        "luyenTap": {
+          "nhanBiet": "nhận diện dạng toán, công thức",
+          "thongHieu": "áp dụng công thức, định lí trực tiếp",
+          "vanDung": "giải bài toán thực tế nhiều bước",
+          "vanDungCao": "bài toán chứng minh hoặc tổng hợp kiến thức nhiều chương"
+        },
+        "vanDung": "Lập bảng/đồ thị theo dữ liệu thực tế của gia đình (tiền điện, chi tiêu theo tháng) rồi nhận xét"
+      }
+    },
+    "KHTN": {
+      "nangLuc": [
+        "Nhận thức khoa học tự nhiên: trình bày phản ứng hóa học, tốc độ phản ứng, điện – nhiệt – cơ ở mức sâu hơn",
+        "Tìm hiểu tự nhiên: thiết kế thí nghiệm kiểm chứng, thu thập – xử lí số liệu định lượng",
+        "Vận dụng kiến thức, kĩ năng đã học vào giải thích hiện tượng, an toàn hóa chất, sức khỏe"
+      ],
+      "phamChat": [
+        "Trung thực: báo cáo đúng số liệu, không làm tròn tùy ý",
+        "Trách nhiệm: an toàn khi dùng hóa chất, thiết bị điện, giữ vệ sinh cơ thể",
+        "Chăm chỉ: kiên trì với thí nghiệm định lượng nhiều bước"
+      ],
+      "yeuCauCanDat": [
+        "Trình bày phản ứng hóa học, các yếu tố ảnh hưởng tốc độ phản ứng",
+        "Trình bày kiến thức về điện (mạch điện, cường độ, hiệu điện thế), áp suất, đòn bẩy",
+        "Trình bày cấu tạo, chức năng cơ bản của các hệ cơ quan trong cơ thể người",
+        "Nêu được mối quan hệ giữa sinh vật và môi trường, cân bằng sinh thái đơn giản"
+      ],
+      "hoatDong": {
+        "moDau": "Đưa hiện tượng liên quan sức khỏe/kĩ thuật (đèn sáng yếu, thức ăn để lâu bị chua) để HS đặt câu hỏi",
+        "hinhThanh": "Chia 3 phần: (1) Quan sát – dự đoán; (2) Thí nghiệm định lượng, ghi số liệu; (3) Phân tích số liệu, rút ra quy luật",
+        "luyenTap": {
+          "nhanBiet": "gọi tên đại lượng, hiện tượng, cơ quan",
+          "thongHieu": "giải thích cơ chế, mối liên hệ",
+          "vanDung": "tính toán/áp dụng vào bài tập tình huống mới",
+          "vanDungCao": "đề xuất giải pháp bảo vệ sức khỏe/môi trường dựa trên kiến thức"
+        },
+        "vanDung": "Khảo sát 1 vấn đề sức khỏe/môi trường tại gia đình hoặc lớp học, đề xuất cách cải thiện"
+      }
+    },
+    "Lịch sử": {
+      "nangLuc": [
+        "Tìm hiểu lịch sử: khai thác tư liệu về giai đoạn cận đại (thế giới và Việt Nam thời Nguyễn)",
+        "Nhận thức và tư duy lịch sử: phân tích nguyên nhân, tính chất các cuộc cách mạng, phong trào",
+        "Vận dụng kiến thức, kĩ năng đã học: đánh giá bài học lịch sử cho hiện tại"
+      ],
+      "phamChat": [
+        "Yêu nước: cảm thông, tự hào tinh thần đấu tranh chống thực dân của dân tộc",
+        "Trách nhiệm: trân trọng độc lập, chủ quyền đất nước",
+        "Trung thực: nhìn nhận khách quan hạn chế của triều Nguyễn, tính hai mặt của lịch sử"
+      ],
+      "yeuCauCanDat": [
+        "Trình bày nét chính các cuộc cách mạng tư sản, sự phát triển của chủ nghĩa tư bản",
+        "Trình bày phong trào công nhân và sự ra đời của chủ nghĩa xã hội khoa học (nét chính)",
+        "Trình bày tình hình Việt Nam thời Nguyễn, quá trình thực dân Pháp xâm lược",
+        "Nêu được các phong trào kháng chiến chống Pháp cuối thế kỉ XIX và ý nghĩa"
+      ],
+      "hoatDong": {
+        "moDau": "Chiếu hình ảnh/tư liệu về một biến cố lớn (cách mạng, chiến tranh xâm lược) để HS dự đoán nguyên nhân",
+        "hinhThanh": "Chia 3 phần: (1) Bối cảnh – nguyên nhân; (2) Diễn biến chính qua lược đồ, tư liệu; (3) Kết quả, ý nghĩa, bài học lịch sử",
+        "luyenTap": {
+          "nhanBiet": "nêu thời gian, sự kiện, nhân vật chính",
+          "thongHieu": "trình bày nguyên nhân, tính chất sự kiện",
+          "vanDung": "đánh giá vai trò một nhân vật/phong trào",
+          "vanDungCao": "so sánh 2 phong trào/cuộc cách mạng, rút ra bài học"
+        },
+        "vanDung": "Viết đoạn ngắn liên hệ bài học đấu tranh giữ độc lập với ý thức bảo vệ chủ quyền hiện nay"
+      }
+    },
+    "Địa lí": {
+      "nangLuc": [
+        "Nhận thức khoa học địa lí: trình bày đặc điểm tự nhiên Việt Nam (địa hình, khí hậu, thủy văn, đất, sinh vật)",
+        "Tìm hiểu địa lí: đọc bản đồ tự nhiên Việt Nam, phân tích số liệu khí hậu, biển đảo",
+        "Vận dụng kiến thức, kĩ năng đã học vào việc thích ứng thiên tai, bảo vệ tài nguyên"
+      ],
+      "phamChat": [
+        "Yêu nước: tự hào về tài nguyên, biển đảo của Tổ quốc",
+        "Trách nhiệm: ý thức bảo vệ chủ quyền biển đảo, phòng chống thiên tai",
+        "Chăm chỉ: kiên trì phân tích bản đồ, số liệu khí hậu nhiều vùng"
+      ],
+      "yeuCauCanDat": [
+        "Trình bày đặc điểm địa hình, khoáng sản Việt Nam",
+        "Trình bày đặc điểm khí hậu, thủy văn Việt Nam và tác động đến sản xuất, đời sống",
+        "Trình bày đặc điểm đất, sinh vật và vấn đề bảo vệ đa dạng sinh học Việt Nam",
+        "Nêu đặc điểm vùng biển, đảo Việt Nam và vấn đề bảo vệ chủ quyền, tài nguyên biển"
+      ],
+      "hoatDong": {
+        "moDau": "Cho xem bản đồ/hình ảnh cảnh quan Việt Nam (núi, biển, đồng bằng) yêu cầu HS nhận diện vùng miền",
+        "hinhThanh": "Chia 3 phần: (1) Đặc điểm chung qua bản đồ; (2) Phân tích nguyên nhân hình thành qua số liệu; (3) Ảnh hưởng đến đời sống, sản xuất",
+        "luyenTap": {
+          "nhanBiet": "đọc tên địa hình, sông, vùng khí hậu trên bản đồ",
+          "thongHieu": "giải thích nguyên nhân đặc điểm tự nhiên",
+          "vanDung": "phân tích ảnh hưởng của tự nhiên đến 1 hoạt động sản xuất cụ thể",
+          "vanDungCao": "đề xuất giải pháp thích ứng thiên tai/biến đổi khí hậu cho một vùng"
+        },
+        "vanDung": "Tìm hiểu đặc điểm tự nhiên nổi bật của Nghệ An (hoặc tỉnh nhà), liên hệ với kiến thức đã học"
+      }
+    },
+    "Tiếng Anh": {
+      "nangLuc": [
+        "Nghe hiểu hội thoại, bài nói dài hơn, chủ đề đa dạng (môi trường, công nghệ, văn hóa)",
+        "Nói: trình bày quan điểm, so sánh, tranh luận đơn giản có lập luận",
+        "Đọc hiểu văn bản dài, nhiều đoạn, suy luận được ý ngầm định",
+        "Viết được đoạn văn/bài viết ngắn có cấu trúc rõ (mở – thân – kết)"
+      ],
+      "phamChat": [
+        "Chăm chỉ: tự học từ vựng, luyện nghe – nói ngoài giờ học",
+        "Trách nhiệm: chuẩn bị bài thuyết trình, hợp tác nhóm hiệu quả",
+        "Tôn trọng sự đa dạng văn hóa, quan điểm khác biệt khi tranh luận"
+      ],
+      "yeuCauCanDat": [
+        "Sử dụng cấu trúc ngữ pháp mức B1 (thì hoàn thành, câu bị động, mệnh đề quan hệ)",
+        "Nghe, nói trình bày được quan điểm cá nhân về vấn đề quen thuộc",
+        "Đọc hiểu văn bản 200–250 từ, suy luận thông tin không nêu trực tiếp",
+        "Viết được bài viết ngắn 10–12 câu có bố cục 3 phần rõ ràng"
+      ],
+      "hoatDong": {
+        "moDau": "",
+        "hinhThanh": "Chia 3 phần: (1) Presentation ngữ pháp/từ vựng mới; (2) Controlled practice; (3) Production – nói/viết có lập luận",
+        "luyenTap": {
+          "nhanBiet": "nhận diện cấu trúc câu, từ vựng trong bài đọc",
+          "thongHieu": "trả lời câu hỏi thông tin chi tiết, suy luận",
+          "vanDung": "viết đoạn có cấu trúc theo mẫu",
+          "vanDungCao": "thuyết trình/viết bài quan điểm cá nhân có phản biện"
+        },
+        "vanDung": "Thực hiện 1 bài nói/viết ngắn về chủ đề bài học liên hệ đời sống cá nhân, quay video hoặc nộp bài viết"
+      }
+    },
+    "GDCD": {
+      "nangLuc": [
+        "Điều chỉnh hành vi: nhận biết và tuân thủ pháp luật về quyền, nghĩa vụ công dân cơ bản",
+        "Phát triển bản thân: rèn tính cần cù, sáng tạo trong lao động và học tập",
+        "Tìm hiểu và tham gia hoạt động kinh tế – xã hội: nhận biết tệ nạn xã hội, bạo lực gia đình để phòng tránh"
+      ],
+      "phamChat": [
+        "Yêu nước: tự hào truyền thống dân tộc, tôn trọng sự đa dạng văn hóa các dân tộc",
+        "Trách nhiệm: tuân thủ pháp luật, phòng chống tệ nạn xã hội",
+        "Chăm chỉ: cần cù, sáng tạo trong lao động, học tập"
+      ],
+      "yeuCauCanDat": [
+        "Nêu biểu hiện của tự hào truyền thống dân tộc, tôn trọng sự đa dạng văn hóa",
+        "Giải thích ý nghĩa của lao động cần cù, sáng tạo",
+        "Nêu quyền và nghĩa vụ cơ bản của công dân theo quy định pháp luật phù hợp lứa tuổi",
+        "Nhận biết biểu hiện, tác hại của tệ nạn xã hội và bạo lực gia đình, cách phòng tránh"
+      ],
+      "hoatDong": {
+        "moDau": "Đưa tình huống/câu chuyện thời sự gần gũi để HS nêu quan điểm ban đầu",
+        "hinhThanh": "Chia 3 phần: (1) Khái niệm – biểu hiện; (2) Nguyên nhân, hậu quả; (3) Quy định pháp luật liên quan/cách rèn luyện",
+        "luyenTap": {
+          "nhanBiet": "liệt kê biểu hiện, quy định liên quan",
+          "thongHieu": "giải thích vì sao cần tuân thủ/thực hiện",
+          "vanDung": "xử lí tình huống giả định có yếu tố pháp luật",
+          "vanDungCao": "xây dựng thông điệp/kế hoạch tuyên truyền phòng chống tệ nạn cho lớp"
+        },
+        "vanDung": "Tìm hiểu 1 quy định pháp luật liên quan chủ đề bài học đang áp dụng ở địa phương, chia sẻ với lớp"
+      }
+    }
+  },
+  "9": {
+    "Ngữ văn": {
+      "nangLuc": [
+        "Đọc hiểu truyện truyền kì, thơ hiện đại, bi kịch/kịch, nghị luận văn học – xã hội, văn bản nhật dụng",
+        "Viết được bài văn nghị luận xã hội, nghị luận văn học có chiều sâu, bài văn thuyết minh tổng hợp",
+        "Nói và nghe: thuyết trình, phản biện, tranh luận vấn đề xã hội có lập luận chặt chẽ",
+        "Phân tích, đánh giá được giá trị nội dung – nghệ thuật tác phẩm ở mức khái quát, so sánh"
+      ],
+      "phamChat": [
+        "Trách nhiệm: có chính kiến độc lập, biết bảo vệ quan điểm bằng lập luận thuyết phục",
+        "Nhân ái: đồng cảm với thân phận con người, trân trọng giá trị nhân văn tác phẩm",
+        "Trung thực: đánh giá khách quan, không a dua theo số đông",
+        "Yêu nước: tự hào về nền văn học dân tộc qua các giai đoạn"
+      ],
+      "yeuCauCanDat": [
+        "Phân tích được chủ đề, cảm hứng, giá trị nhân văn trong truyện, thơ hiện đại",
+        "Nhận biết đặc điểm bi kịch/kịch và xung đột kịch tiêu biểu",
+        "Viết được bài văn nghị luận xã hội trình bày quan điểm cá nhân về vấn đề đời sống, có phản biện",
+        "Viết được bài nghị luận văn học phân tích tác phẩm ở mức khái quát, có so sánh liên hệ",
+        "Chuẩn bị kỹ năng đọc hiểu – viết đáp ứng yêu cầu thi tuyển sinh lớp 10"
+      ],
+      "hoatDong": {
+        "moDau": "Đặt câu hỏi/tình huống xã hội thời sự hoặc trích dẫn gây tranh luận liên quan chủ đề tác phẩm",
+        "hinhThanh": "Chia 3 phần: (1) Đọc – xác định bối cảnh, xung đột/chủ đề; (2) Phân tích sâu nhân vật/lí lẽ – dẫn chứng; (3) Tổng kết giá trị, thông điệp tác phẩm",
+        "luyenTap": {
+          "nhanBiet": "xác định chủ đề, luận điểm, xung đột chính",
+          "thongHieu": "giải thích ý nghĩa chi tiết, lí lẽ",
+          "vanDung": "viết đoạn nghị luận theo luận điểm cho sẵn",
+          "vanDungCao": "viết bài nghị luận hoàn chỉnh có phản biện, liên hệ tác phẩm khác (dạng đề thi vào 10)"
+        },
+        "vanDung": "Viết bài nghị luận ngắn liên hệ thông điệp tác phẩm với một vấn đề xã hội đang được quan tâm hiện nay"
+      }
+    },
+    "Toán": {
+      "nangLuc": [
+        "Tư duy và lập luận toán học: giải hệ phương trình, phương trình bậc hai, chứng minh hình học đường tròn",
+        "Giải quyết vấn đề toán học: mô hình hóa bài toán thực tế bằng hàm số, phương trình",
+        "Giao tiếp toán học: trình bày lời giải logic, chặt chẽ đáp ứng yêu cầu thi vào 10",
+        "Sử dụng công cụ, phương tiện học toán: vẽ hình chính xác, tính xác suất – thống kê bằng bảng số liệu"
+      ],
+      "phamChat": [
+        "Chăm chỉ: luyện đề thường xuyên, kiên trì với dạng toán khó",
+        "Trung thực: tự giải, tự kiểm tra lại kết quả trước khi nộp",
+        "Trách nhiệm: có kế hoạch ôn tập rõ ràng hướng tới kỳ thi tuyển sinh lớp 10"
+      ],
+      "yeuCauCanDat": [
+        "Giải được phương trình bậc hai, hệ hai phương trình bậc nhất hai ẩn",
+        "Nhận biết và vận dụng hàm số y = ax² (a≠0), đồ thị và ứng dụng",
+        "Trình bày được tính chất đường tròn, góc nội tiếp, tứ giác nội tiếp, hệ thức lượng trong tam giác vuông",
+        "Vận dụng tam giác đồng dạng vào bài toán đo đạc, chứng minh hình học tổng hợp",
+        "Tính được xác suất, số đặc trưng thống kê (số trung bình, trung vị, mốt) của mẫu dữ liệu"
+      ],
+      "hoatDong": {
+        "moDau": "Đưa bài toán thực tế cần lập phương trình/hệ phương trình (chuyển động, năng suất) để HS thử hướng giải",
+        "hinhThanh": "Chia 3 phần: (1) Định lí/công thức mới; (2) Chứng minh hoặc ví dụ mẫu có lời giải chi tiết; (3) Luyện áp dụng theo từng bước",
+        "luyenTap": {
+          "nhanBiet": "nhận diện dạng phương trình/hình cần giải",
+          "thongHieu": "áp dụng công thức, định lí trực tiếp",
+          "vanDung": "giải bài toán thực tế/hình học nhiều bước",
+          "vanDungCao": "bài toán tổng hợp nhiều kiến thức (dạng đề thi vào 10)"
+        },
+        "vanDung": "Giải 1 bài toán thực tế tự chọn liên quan chủ đề (vay lãi, tăng trưởng, đo đạc), trình bày cách lập luận"
+      }
+    },
+    "KHTN": {
+      "nangLuc": [
+        "Nhận thức khoa học tự nhiên: trình bày kiến thức hóa học vô cơ – hữu cơ cơ bản, điện – từ, di truyền – tiến hóa",
+        "Tìm hiểu tự nhiên: thiết kế thí nghiệm kiểm chứng quy luật, phân tích số liệu định lượng phức tạp hơn",
+        "Vận dụng kiến thức, kĩ năng đã học vào giải thích công nghệ, hiện tượng sinh thái, sức khỏe"
+      ],
+      "phamChat": [
+        "Trung thực: tôn trọng số liệu thực nghiệm, không suy diễn thiếu căn cứ",
+        "Trách nhiệm: ý thức bảo vệ môi trường, sử dụng an toàn hóa chất – điện",
+        "Chăm chỉ: kiên trì với nội dung trừu tượng (di truyền, phản ứng hữu cơ)"
+      ],
+      "yeuCauCanDat": [
+        "Trình bày tính chất một số hợp chất vô cơ, hữu cơ cơ bản và ứng dụng thực tế",
+        "Trình bày kiến thức về điện, từ (nam châm, cảm ứng điện từ) và ứng dụng kĩ thuật",
+        "Trình bày quy luật di truyền cơ bản, cơ chế tiến hóa ở mức đơn giản",
+        "Nêu được mối quan hệ sinh vật – môi trường, các biện pháp bảo vệ hệ sinh thái"
+      ],
+      "hoatDong": {
+        "moDau": "Đưa hiện tượng/công nghệ liên quan đời sống (máy phát điện, đặc điểm di truyền gia đình) để HS đặt câu hỏi",
+        "hinhThanh": "Chia 3 phần: (1) Quan sát – dự đoán quy luật; (2) Thí nghiệm/phân tích số liệu, sơ đồ; (3) Rút ra quy luật, kết luận khoa học",
+        "luyenTap": {
+          "nhanBiet": "gọi tên chất, hiện tượng, quy luật",
+          "thongHieu": "giải thích cơ chế, viết phương trình/sơ đồ đơn giản",
+          "vanDung": "áp dụng tính toán, giải thích tình huống mới",
+          "vanDungCao": "đề xuất giải pháp kĩ thuật/bảo vệ môi trường dựa trên kiến thức tổng hợp"
+        },
+        "vanDung": "Tìm hiểu 1 ứng dụng công nghệ hoặc vấn đề sinh thái tại địa phương liên quan chủ đề, viết báo cáo ngắn"
+      }
+    },
+    "Lịch sử": {
+      "nangLuc": [
+        "Tìm hiểu lịch sử: khai thác tư liệu về giai đoạn hiện đại thế giới và Việt Nam (1918 đến nay)",
+        "Nhận thức và tư duy lịch sử: phân tích nguyên nhân, tính chất, ý nghĩa các sự kiện lớn thế kỉ XX",
+        "Vận dụng kiến thức, kĩ năng đã học: liên hệ bài học lịch sử với công cuộc đổi mới, hội nhập hiện nay"
+      ],
+      "phamChat": [
+        "Yêu nước: tự hào về thắng lợi hai cuộc kháng chiến, công cuộc đổi mới của dân tộc",
+        "Trách nhiệm: có ý thức xây dựng, bảo vệ đất nước trong thời kỳ hội nhập",
+        "Trung thực: đánh giá khách quan các giai đoạn lịch sử, không cực đoan một chiều"
+      ],
+      "yeuCauCanDat": [
+        "Trình bày nét chính về Chiến tranh thế giới I, II và trật tự thế giới sau chiến tranh",
+        "Trình bày phong trào giải phóng dân tộc và sự ra đời nước Việt Nam Dân chủ Cộng hòa",
+        "Trình bày diễn biến chính, ý nghĩa hai cuộc kháng chiến chống Pháp và chống Mỹ",
+        "Nêu được thành tựu công cuộc đổi mới đất nước từ 1986 đến nay"
+      ],
+      "hoatDong": {
+        "moDau": "Chiếu tư liệu/hình ảnh biến cố lịch sử thế kỉ XX, đặt câu hỏi liên hệ tác động toàn cầu",
+        "hinhThanh": "Chia 3 phần: (1) Bối cảnh – nguyên nhân; (2) Diễn biến chính qua lược đồ, tư liệu; (3) Kết quả, ý nghĩa lịch sử – bài học hiện tại",
+        "luyenTap": {
+          "nhanBiet": "nêu thời gian, sự kiện, nhân vật chính",
+          "thongHieu": "trình bày nguyên nhân, ý nghĩa sự kiện",
+          "vanDung": "liên hệ bài học lịch sử với vấn đề thời sự",
+          "vanDungCao": "so sánh, đánh giá vai trò các giai đoạn lịch sử (dạng câu hỏi thi vào 10)"
+        },
+        "vanDung": "Viết đoạn ngắn hoặc thuyết trình về đóng góp của một nhân vật/giai đoạn lịch sử với đất nước hôm nay"
+      }
+    },
+    "Địa lí": {
+      "nangLuc": [
+        "Nhận thức khoa học địa lí: trình bày đặc điểm dân cư, kinh tế các vùng của Việt Nam",
+        "Tìm hiểu địa lí: phân tích bản đồ kinh tế, biểu đồ, số liệu thống kê theo vùng",
+        "Vận dụng kiến thức, kĩ năng đã học: liên hệ định hướng phát triển kinh tế địa phương"
+      ],
+      "phamChat": [
+        "Yêu nước: tự hào về sự phát triển kinh tế – xã hội các vùng miền đất nước",
+        "Trách nhiệm: ý thức phát triển kinh tế bền vững, bảo vệ tài nguyên vùng",
+        "Chăm chỉ: kiên trì phân tích số liệu kinh tế nhiều vùng, nhiều ngành"
+      ],
+      "yeuCauCanDat": [
+        "Trình bày đặc điểm dân cư, lao động và vấn đề việc làm ở Việt Nam",
+        "Trình bày đặc điểm các ngành kinh tế (nông nghiệp, công nghiệp, dịch vụ) Việt Nam",
+        "Trình bày đặc điểm phát triển kinh tế – xã hội của các vùng kinh tế trọng điểm",
+        "Phân tích được đặc điểm địa lí địa phương (tỉnh/thành phố nơi học sinh sinh sống)"
+      ],
+      "hoatDong": {
+        "moDau": "Đưa số liệu/hình ảnh về một ngành kinh tế hoặc vùng miền để HS nhận xét trình độ phát triển",
+        "hinhThanh": "Chia 3 phần: (1) Đặc điểm chung qua bản đồ, số liệu; (2) Phân tích thế mạnh – hạn chế từng vùng/ngành; (3) Định hướng phát triển",
+        "luyenTap": {
+          "nhanBiet": "đọc số liệu, tên vùng/ngành kinh tế trên bản đồ",
+          "thongHieu": "giải thích thế mạnh, hạn chế",
+          "vanDung": "phân tích số liệu thực tế 1 vùng cụ thể",
+          "vanDungCao": "đề xuất định hướng phát triển kinh tế cho 1 vùng/địa phương"
+        },
+        "vanDung": "Tìm hiểu đặc điểm kinh tế nổi bật của Nghệ An (hoặc tỉnh nhà), đề xuất 1 giải pháp phát triển phù hợp"
+      }
+    },
+    "Tiếng Anh": {
+      "nangLuc": [
+        "Nghe hiểu bài nói, hội thoại dài, chủ đề học thuật – xã hội (giáo dục, nghề nghiệp, môi trường)",
+        "Nói: thuyết trình, tranh luận có lập luận, phản hồi ý kiến người khác mạch lạc",
+        "Đọc hiểu văn bản dài, nhiều thể loại, suy luận ý nghĩa hàm ẩn, từ vựng học thuật",
+        "Viết được bài viết có lập luận, đúng cấu trúc, đáp ứng yêu cầu thi tuyển sinh lớp 10"
+      ],
+      "phamChat": [
+        "Chăm chỉ: luyện đề, mở rộng vốn từ học thuật thường xuyên",
+        "Trách nhiệm: có kế hoạch ôn luyện 4 kỹ năng hướng tới kỳ thi vào 10",
+        "Tôn trọng sự đa dạng văn hóa, quan điểm khi tranh luận bằng tiếng Anh"
+      ],
+      "yeuCauCanDat": [
+        "Sử dụng cấu trúc ngữ pháp mức B1–B1+ (câu bị động phức, câu điều kiện, mệnh đề danh từ)",
+        "Nghe, nói trình bày, phản biện quan điểm cá nhân về vấn đề xã hội quen thuộc",
+        "Đọc hiểu văn bản 250–300 từ, suy luận thông tin hàm ẩn, đoán nghĩa từ trong ngữ cảnh",
+        "Viết được bài viết 12–15 câu có lập luận rõ, đúng ngữ pháp (dạng đề thi vào 10)"
+      ],
+      "hoatDong": {
+        "moDau": "",
+        "hinhThanh": "Chia 3 phần: (1) Presentation ngữ pháp/từ vựng học thuật; (2) Controlled practice; (3) Production – nói/viết có lập luận",
+        "luyenTap": {
+          "nhanBiet": "nhận diện từ vựng, cấu trúc trong bài đọc dài",
+          "thongHieu": "trả lời câu hỏi suy luận, đoán nghĩa từ",
+          "vanDung": "viết đoạn có lập luận theo mẫu",
+          "vanDungCao": "viết bài/thuyết trình quan điểm cá nhân có phản biện (dạng đề thi vào 10)"
+        },
+        "vanDung": "Luyện 1 đề đọc hiểu – viết ngắn theo cấu trúc đề thi tuyển sinh lớp 10, tự chấm theo đáp án gợi ý"
+      }
+    },
+    "GDCD": {
+      "nangLuc": [
+        "Điều chỉnh hành vi: nhận biết, đánh giá hành vi vi phạm pháp luật và trách nhiệm pháp lí cơ bản",
+        "Phát triển bản thân: xây dựng lí tưởng sống, định hướng nghề nghiệp phù hợp năng lực",
+        "Tìm hiểu và tham gia hoạt động kinh tế – xã hội: nhận biết quyền tự do kinh doanh, quyền – nghĩa vụ lao động"
+      ],
+      "phamChat": [
+        "Trách nhiệm: sống có lí tưởng, tuân thủ pháp luật, chuẩn bị định hướng nghề nghiệp",
+        "Trung thực: khách quan, công bằng trong nhận xét, đánh giá sự việc",
+        "Yêu nước: có trách nhiệm với cộng đồng, đất nước khi trưởng thành"
+      ],
+      "yeuCauCanDat": [
+        "Nêu biểu hiện của sống có lí tưởng và cách xây dựng lí tưởng sống phù hợp",
+        "Giải thích được thế nào là khách quan, công bằng và ý nghĩa trong cuộc sống",
+        "Nêu quyền tự do kinh doanh, quyền và nghĩa vụ lao động cơ bản của công dân",
+        "Nhận biết vi phạm pháp luật, trách nhiệm pháp lí phù hợp lứa tuổi để phòng tránh"
+      ],
+      "hoatDong": {
+        "moDau": "Đưa tình huống/câu chuyện thời sự về lựa chọn nghề nghiệp hoặc vi phạm pháp luật để HS nêu quan điểm",
+        "hinhThanh": "Chia 3 phần: (1) Khái niệm – biểu hiện; (2) Quy định pháp luật/ý nghĩa liên quan; (3) Cách rèn luyện, định hướng bản thân",
+        "luyenTap": {
+          "nhanBiet": "liệt kê biểu hiện, quy định liên quan",
+          "thongHieu": "giải thích ý nghĩa, hậu quả pháp lí",
+          "vanDung": "xử lí tình huống giả định có yếu tố pháp luật/nghề nghiệp",
+          "vanDungCao": "xây dựng kế hoạch định hướng nghề nghiệp hoặc kế hoạch sống có lí tưởng của bản thân"
+        },
+        "vanDung": "Tìm hiểu 1 nghề nghiệp/quy định pháp luật liên quan chủ đề, chia sẻ định hướng cá nhân với lớp"
+      }
+    }
+  }
+};
+
+function layGoiY(lop, mon){
+  if(!GOI_Y_GIAO_AN[lop]) return null;
+  const monTrim = (mon||'').trim().toLowerCase();
+  const monKey = Object.keys(GOI_Y_GIAO_AN[lop]).find(k => k.toLowerCase() === monTrim);
+  return monKey ? GOI_Y_GIAO_AN[lop][monKey] : null;
+}
+
+function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
+
+function taoGiaoAn(){
+  const mon = document.getElementById('monHoc').value || '...';
+  const lop = document.getElementById('lop').value || '...';
+  const ten = document.getElementById('tenBai').value || 'Tên bài học';
+  const soTiet = document.getElementById('soTiet').value || 1;
+  const kienThucLines = (document.getElementById('kienThuc').value || '').split('\n').filter(x=>x.trim());
+  const thietBiLines = (document.getElementById('thietBi').value || '').split('\n').filter(x=>x.trim());
+
+  const goiY = layGoiY(lop, mon);
+  const nangLucLi = goiY
+    ? goiY.nangLuc.map(l=>`<li class="editable" contenteditable="true">${esc(l)}</li>`).join('')
+    : `<li class="editable" contenteditable="true">Năng lực đặc thù môn ${esc(mon)}: [điền năng lực đặc thù phù hợp bài học]</li>`;
+  const phamChatLi = goiY
+    ? goiY.phamChat.map(l=>`<li class="editable" contenteditable="true">${esc(l)}</li>`).join('')
+    : '<li class="editable" contenteditable="true">[Điền phẩm chất: chăm chỉ, trách nhiệm, nhân ái... phù hợp nội dung bài]</li>';
+  const moDauStr = goiY ? goiY.hoatDong.moDau : '[Câu hỏi gợi mở / tình huống / trò chơi ngắn dẫn vào bài]';
+  const hinhThanhStr = goiY ? goiY.hoatDong.hinhThanh : '[Nội dung kiến thức chính, chia theo từng đơn vị kiến thức nhỏ]';
+  const luyenTapStr = goiY
+    ? `Nhận biết: ${goiY.hoatDong.luyenTap.nhanBiet} | Thông hiểu: ${goiY.hoatDong.luyenTap.thongHieu} | Vận dụng: ${goiY.hoatDong.luyenTap.vanDung} | Vận dụng cao: ${goiY.hoatDong.luyenTap.vanDungCao}`
+    : '[Hệ thống câu hỏi/bài tập luyện tập bám sát kiến thức trọng tâm]';
+  const vanDungActStr = goiY ? goiY.hoatDong.vanDung : '[Bài tập/nhiệm vụ vận dụng thực tế, có thể giao về nhà]';
+
+  const kienThucLi = kienThucLines.length
+    ? kienThucLines.map(l=>`<li>${esc(l)}</li>`).join('')
+    : (goiY ? goiY.yeuCauCanDat.map(l=>`<li class="editable" contenteditable="true">${esc(l)}</li>`).join('')
+            : '<li class="editable" contenteditable="true">[Điền kiến thức trọng tâm]</li>');
+  const thietBiLi = thietBiLines.length ? thietBiLines.map(l=>`<li>${esc(l)}</li>`).join('') : '<li class="editable" contenteditable="true">[Điền thiết bị dạy học]</li>';
+
+  const html = `
+    <h2 class="ten-bai">${esc(ten)}</h2>
+    <div class="meta-line">Môn: ${esc(mon)} — Lớp: ${esc(lop)} — Thời lượng: ${esc(soTiet)} tiết</div>
+
+    <div class="muc">
+      <h4>I. Mục Tiêu</h4>
+      <p style="font-size:0.9rem; font-weight:600; margin-bottom:4px;">1. Về kiến thức</p>
+      <ol>${kienThucLi}</ol>
+      <p style="font-size:0.9rem; font-weight:600; margin:10px 0 4px;">2. Về năng lực</p>
+      <ul>
+        <li class="editable" contenteditable="true">Năng lực chung: tự chủ và tự học, giao tiếp và hợp tác, giải quyết vấn đề và sáng tạo</li>
+        ${nangLucLi}
+      </ul>
+      <p style="font-size:0.9rem; font-weight:600; margin:10px 0 4px;">3. Về phẩm chất</p>
+      <ul>
+        ${phamChatLi}
+      </ul>
+    </div>
+
+    <div class="muc">
+      <h4>II. Thiết Bị Dạy Học &amp; Học Liệu</h4>
+      <ul>${thietBiLi}</ul>
+    </div>
+
+    <div class="muc">
+      <h4>III. Tiến Trình Dạy Học</h4>
+
+      <div class="hoat-dong">
+        <h5>Hoạt động 1 — Mở đầu (Khởi động)</h5>
+        <div class="field"><b>Mục tiêu:</b> <span class="editable" contenteditable="true">Tạo tâm thế, kết nối kiến thức đã học/kinh nghiệm thực tế với nội dung bài mới</span></div>
+        <div class="field"><b>Nội dung:</b> <span class="editable" contenteditable="true">${esc(moDauStr)}</span></div>
+        <div class="field"><b>Sản phẩm:</b> <span class="editable" contenteditable="true">Câu trả lời/ý kiến ban đầu của học sinh</span></div>
+        <div class="field"><b>Tổ chức thực hiện:</b> <span class="editable" contenteditable="true">GV nêu câu hỏi/tình huống → HS trả lời cá nhân → GV dẫn dắt vào bài mới</span></div>
+      </div>
+
+      <div class="hoat-dong">
+        <h5>Hoạt động 2 — Hình thành kiến thức mới</h5>
+        <div class="field"><b>Mục tiêu:</b> <span class="editable" contenteditable="true">Học sinh chiếm lĩnh được kiến thức trọng tâm đã nêu ở Mục I.1</span></div>
+        <div class="field"><b>Nội dung:</b> <span class="editable" contenteditable="true">${esc(hinhThanhStr)}</span></div>
+        <div class="field"><b>Sản phẩm:</b> <span class="editable" contenteditable="true">Phiếu học tập/vở ghi của học sinh sau hoạt động</span></div>
+        <div class="field"><b>Tổ chức thực hiện:</b> <span class="editable" contenteditable="true">GV giao nhiệm vụ (cá nhân/nhóm) → HS thực hiện → Báo cáo, thảo luận → GV chốt kiến thức</span></div>
+      </div>
+
+      <div class="hoat-dong">
+        <h5>Hoạt động 3 — Luyện tập</h5>
+        <div class="field"><b>Mục tiêu:</b> <span class="editable" contenteditable="true">Củng cố, vận dụng trực tiếp kiến thức vừa học vào bài tập cụ thể</span></div>
+        <div class="field"><b>Nội dung:</b> <span class="editable" contenteditable="true">${esc(luyenTapStr)}</span></div>
+        <div class="field"><b>Sản phẩm:</b> <span class="editable" contenteditable="true">Bài làm của học sinh (cá nhân hoặc nhóm)</span></div>
+        <div class="field"><b>Tổ chức thực hiện:</b> <span class="editable" contenteditable="true">GV giao bài tập → HS làm việc độc lập/nhóm → GV nhận xét, sửa bài</span></div>
+      </div>
+
+      <div class="hoat-dong">
+        <h5>Hoạt động 4 — Vận dụng</h5>
+        <div class="field"><b>Mục tiêu:</b> <span class="editable" contenteditable="true">Vận dụng kiến thức, kĩ năng đã học để giải quyết vấn đề trong thực tiễn</span></div>
+        <div class="field"><b>Nội dung:</b> <span class="editable" contenteditable="true">${esc(vanDungActStr)}</span></div>
+        <div class="field"><b>Sản phẩm:</b> <span class="editable" contenteditable="true">Sản phẩm vận dụng của học sinh (bài viết, dự án nhỏ...)</span></div>
+        <div class="field"><b>Tổ chức thực hiện:</b> <span class="editable" contenteditable="true">GV giao nhiệm vụ vận dụng → HS thực hiện ở nhà/tiết sau → GV kiểm tra, đánh giá</span></div>
+      </div>
+    </div>
+
+    <div class="muc">
+      <h4>IV. Hồ Sơ Dạy Học</h4>
+      <ul>
+        <li class="editable" contenteditable="true">Phiếu học tập, rubric đánh giá (nếu có)</li>
+      </ul>
+    </div>
+  `;
+  document.getElementById('giaoAnContent').innerHTML = html;
+  document.getElementById('ketQua').style.display = 'block';
+  document.getElementById('ketQua').scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function taiWord(){
+  if(document.getElementById('ketQua').style.display === 'none'){ taoGiaoAn(); }
+  const content = document.getElementById('giaoAnContent').innerHTML;
+  const ten = document.getElementById('tenBai').value || 'giao-an';
+  const htmlDoc = `
+    <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+    <head><meta charset="utf-8"><title>${esc(ten)}</title>
+    <style>
+      body{font-family:'Times New Roman',serif; font-size:13pt;}
+      h2{text-align:center; text-transform:uppercase;}
+      h4{color:#B23A20;}
+      .hoat-dong{border-left:3px solid #B8862B; padding:8px 12px; margin-bottom:10px;}
+    </style></head>
+    <body>${content}</body></html>`;
+  const blob = new Blob(['\ufeff', htmlDoc], {type:'application/msword'});
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = 'giao-an-' + ten.toLowerCase().replace(/[^a-z0-9]+/g,'-').substring(0,40) + '.doc';
+  link.click();
+}
+
+taoGiaoAn();
+</script>
+</body>
+</html>
