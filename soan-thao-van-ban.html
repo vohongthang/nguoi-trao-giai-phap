@@ -305,13 +305,19 @@ function taoVanBan(){
     </div>
   `;
 
+  // Biên bản / Kế hoạch theo Nghị định 30/2020/NĐ-CP không có dòng "Kính gửi" (Biên bản dùng
+  // "Thành phần tham gia" ngay trong nội dung; Kế hoạch không địa chỉ hoá tới một nơi nhận).
+  const showKinhGui = cfg.showKinhGui !== false;
+  const kinhGuiBlock = showKinhGui
+    ? `<div class="vb-kinhgui">Kính gửi: <b class="editable" contenteditable="true">${esc(kinhGui)}</b></div>` : '';
+
   const html = `
     ${headerHtml}
     ${diaDanhTop}
     ${tieuDeHtml}
     ${trichYeuBlock}
 
-    <div class="vb-kinhgui">Kính gửi: <b class="editable" contenteditable="true">${esc(kinhGui)}</b></div>
+    ${kinhGuiBlock}
 
     <div class="vb-noidung editable" contenteditable="true">${esc(noiDung)}</div>
 
