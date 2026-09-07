@@ -96,6 +96,35 @@
     #ketQua, .a4-stage{overflow:visible !important;}
   }
   footer{text-align:center; font-size:0.8rem; color:#8a8270; margin-top:40px;}
+
+  /* ===== AI Role Panel (được JS chèn khi có ?role=... trên URL) — màu cứng, tách biệt
+     hoàn toàn với biến :root của trang để không ảnh hưởng giao diện "giấy tờ" hiện có. ===== */
+  .ai-role-panel{background:#0a2148; color:#fff; border-radius:10px; padding:22px; margin-bottom:26px; box-shadow:0 14px 34px -14px rgba(10,33,72,.5); font-family:'Be Vietnam Pro',sans-serif;}
+  .ai-role-panel .arp-eyebrow{display:inline-block; background:#b31919; color:#fff; font-size:0.72rem; font-weight:700; letter-spacing:.03em; padding:4px 10px; border-radius:999px; margin-bottom:10px;}
+  .ai-role-panel .arp-head{display:flex; align-items:center; gap:10px; margin-bottom:6px;}
+  .ai-role-panel .arp-head .ric{width:36px; height:36px; border-radius:9px; background:rgba(255,255,255,.12); display:flex; align-items:center; justify-content:center; font-size:18px; flex:none;}
+  .ai-role-panel h2{font-size:1.05rem; margin:0; font-family:'Be Vietnam Pro',sans-serif;}
+  .ai-role-panel .arp-desc{font-size:0.86rem; color:#c7d3e6; margin:2px 0 16px;}
+  .ai-role-panel label{display:block; font-size:0.8rem; font-weight:600; margin-bottom:6px; color:#dbe4f2;}
+  .ai-role-panel textarea{width:100%; min-height:110px; padding:12px; border-radius:8px; border:1px solid rgba(255,255,255,.22); background:rgba(255,255,255,.07); color:#fff; font-family:'Be Vietnam Pro',sans-serif; font-size:0.9rem; resize:vertical;}
+  .ai-role-panel textarea::placeholder{color:rgba(255,255,255,.45);}
+  .ai-role-panel textarea:focus{outline:none; border-color:#fff;}
+  .ai-role-panel input[type=password]{width:100%; padding:11px 12px; border-radius:8px; border:1px solid rgba(255,255,255,.22); background:rgba(255,255,255,.07); color:#fff; font-family:'Be Vietnam Pro',sans-serif; font-size:0.88rem; margin-bottom:10px;}
+  .ai-role-panel input[type=password]::placeholder{color:rgba(255,255,255,.45);}
+  .arp-actions{display:flex; gap:10px; margin-top:14px; flex-wrap:wrap; align-items:center;}
+  .arp-btn{display:inline-flex; align-items:center; gap:7px; padding:11px 18px; border-radius:8px; font-weight:700; font-size:0.86rem; cursor:pointer; border:none; font-family:'Be Vietnam Pro',sans-serif;}
+  .arp-btn-primary{background:#b31919; color:#fff;}
+  .arp-btn-primary:hover{background:#8f1414;}
+  .arp-btn-ghost{background:rgba(255,255,255,.1); color:#fff; border:1px solid rgba(255,255,255,.3) !important;}
+  .arp-btn-ghost:hover{background:rgba(255,255,255,.18);}
+  .arp-btn[disabled]{opacity:.55; cursor:not-allowed;}
+  .arp-status{font-size:0.8rem; color:#c7d3e6;}
+  .arp-output{margin-top:16px; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.2); border-radius:8px; padding:14px; font-size:0.88rem; white-space:pre-wrap; line-height:1.6; max-height:360px; overflow:auto; font-family:'Be Vietnam Pro',sans-serif;}
+  .arp-output[hidden]{display:none;}
+  .arp-key-row[hidden]{display:none;}
+  .arp-key-hint{font-size:0.76rem; color:#c7d3e6; margin-top:4px;}
+  .arp-key-hint a{color:#fff;}
+  .arp-key-hint button{background:none; border:none; color:#fff; text-decoration:underline; cursor:pointer; font-size:0.76rem; padding:0; font-family:inherit;}
 </style>
 </head>
 <body>
@@ -111,6 +140,8 @@
   <h1 class="title">Soạn Thảo Văn Bản &amp; Biểu Mẫu</h1>
   <p class="subtitle">Chọn loại văn bản, điền nội dung chính — nhận ngay bản đúng thể thức hành chính, sẵn sàng in hoặc tải về Word chỉnh sửa thêm.</p>
 
+  <div id="aiRolePanel"></div>
+
   <div class="panel">
     <h3>① Chọn Loại Văn Bản</h3>
     <div class="grid cols-2">
@@ -121,6 +152,9 @@
           <option value="bao-cao">Báo cáo công việc</option>
           <option value="don-xin">Đơn xin phép / Đề nghị</option>
           <option value="thong-bao">Thông báo nội bộ</option>
+          <option value="to-trinh">Tờ trình</option>
+          <option value="bien-ban">Biên bản</option>
+          <option value="ke-hoach">Kế hoạch</option>
         </select>
       </div>
       <div>
@@ -186,6 +220,7 @@ Kính mong Quý cơ quan xem xét, giải quyết trong thời gian sớm nhất
 
 <footer>Mẫu văn bản tham khảo theo thể thức hành chính thông dụng — thuộc kho giải pháp của Võ Hồng Thắng.</footer>
 
+<script src="js/ai-roles.js"></script>
 <script>
 function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
 
@@ -198,6 +233,11 @@ const TYPE_CONFIG = {
   'thong-bao': { tieuDe:'THÔNG BÁO',     trichYeuInline:false, showNoiNhan:true,  dateAtBottom:false, chucVuDefault:'Chủ hộ kinh doanh' },
   'don-xin':   { tieuDe:'ĐƠN ĐỀ NGHỊ',   trichYeuInline:false, showNoiNhan:false, dateAtBottom:true,  chucVuDefault:'Người làm đơn' }
 };
+// Bổ sung 3 loại văn bản mới (Tờ trình / Biên bản / Kế hoạch) từ cấu hình dùng chung ai-roles.js,
+// phục vụ các Trợ lý AI Công Chức Xã — không đổi 4 loại gốc phía trên.
+if (window.CTX_AI && window.CTX_AI.EXTRA_VANBAN_TYPES) {
+  Object.assign(TYPE_CONFIG, window.CTX_AI.EXTRA_VANBAN_TYPES);
+}
 
 // Gợi ý lại "Chức vụ người ký" theo loại văn bản khi người dùng đổi lựa chọn —
 // nhưng không ghi đè nếu người dùng đã tự tay sửa trường này.
@@ -316,6 +356,108 @@ function taiWord(){
 }
 
 taoVanBan();
+
+// ============================================================
+// Chế độ Trợ Lý AI theo role (?role=...) — dùng cho các thẻ trong cong-chuc-xa.html.
+// Nếu không có tham số role hợp lệ, trang hoạt động y như trước (không đổi gì).
+// ============================================================
+(function () {
+  if (!window.CTX_AI) return;
+  var params = new URLSearchParams(window.location.search);
+  var roleSlug = params.get('role');
+  if (!roleSlug) return;
+  var role = window.CTX_AI.getRoleBySlug(roleSlug);
+  if (!role) return;
+
+  var mount = document.getElementById('aiRolePanel');
+  if (!mount) return;
+
+  var hasKey = !!window.CTX_AI.getApiKey();
+  var outputBlockHtml = role.outputMode === 'document'
+    ? '<p class="arp-status" id="arpStatus">Kết quả AI sẽ tự động điền vào khung văn bản bên dưới — bạn chỉnh sửa trực tiếp trước khi in/tải Word.</p>'
+    : '<div class="arp-output" id="arpOutput" hidden></div><p class="arp-status" id="arpStatus"></p>';
+
+  mount.innerHTML =
+    '<div class="ai-role-panel">' +
+      '<span class="arp-eyebrow">TRỢ LÝ AI CÔNG CHỨC XÃ</span>' +
+      '<div class="arp-head"><span class="ric">' + role.icon + '</span><h2>' + esc(role.title) + '</h2></div>' +
+      '<p class="arp-desc">' + esc(role.desc) + '</p>' +
+      '<div class="arp-key-row" id="arpKeyRow" ' + (hasKey ? 'hidden' : '') + '>' +
+        '<input type="password" id="arpKeyInput" placeholder="Dán Gemini API Key vào đây...">' +
+        '<p class="arp-key-hint">Key chỉ lưu trên trình duyệt máy này, dùng chung cho cả 15 trợ lý. Lấy miễn phí tại <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">aistudio.google.com/apikey</a>.</p>' +
+      '</div>' +
+      '<label for="arpInput">' + esc(role.inputLabel) + '</label>' +
+      '<textarea id="arpInput" placeholder="' + esc(role.inputPlaceholder) + '"></textarea>' +
+      '<div class="arp-actions">' +
+        '<button class="arp-btn arp-btn-primary" id="arpGoBtn" type="button">✨ Soạn Bằng AI</button>' +
+        '<button class="arp-btn arp-btn-ghost" id="arpKeyToggleBtn" type="button" ' + (hasKey ? '' : 'hidden') + '>🔑 Đổi API Key</button>' +
+      '</div>' +
+      outputBlockHtml +
+    '</div>';
+
+  var keyRow = document.getElementById('arpKeyRow');
+  var keyInput = document.getElementById('arpKeyInput');
+  var keyToggleBtn = document.getElementById('arpKeyToggleBtn');
+  var goBtn = document.getElementById('arpGoBtn');
+  var input = document.getElementById('arpInput');
+  var status = document.getElementById('arpStatus');
+  var outputEl = document.getElementById('arpOutput');
+
+  if (keyInput) keyInput.value = window.CTX_AI.getApiKey();
+  if (keyToggleBtn) {
+    keyToggleBtn.addEventListener('click', function () {
+      keyRow.hidden = !keyRow.hidden;
+    });
+  }
+
+  goBtn.addEventListener('click', function () {
+    var userText = (input.value || '').trim();
+    if (!userText) {
+      status.textContent = '⚠️ Vui lòng nhập nội dung trước khi tạo.';
+      return;
+    }
+    var typedKey = keyInput ? keyInput.value.trim() : '';
+    if (typedKey) {
+      window.CTX_AI.setApiKey(typedKey);
+      if (keyRow) keyRow.hidden = true;
+      if (keyToggleBtn) keyToggleBtn.hidden = false;
+    }
+    if (!window.CTX_AI.getApiKey()) {
+      status.textContent = '⚠️ Vui lòng nhập Gemini API Key ở trên trước khi tạo.';
+      if (keyRow) keyRow.hidden = false;
+      return;
+    }
+
+    goBtn.disabled = true;
+    status.textContent = '⏳ AI đang soạn nội dung, vui lòng đợi...';
+    if (outputEl) outputEl.hidden = true;
+
+    window.CTX_AI.callGemini(role.systemPrompt, userText, function (err, text) {
+      goBtn.disabled = false;
+      if (err) {
+        status.textContent = '❌ Lỗi: ' + err.message + ' — kiểm tra lại API Key hoặc thử lại.';
+        return;
+      }
+      if (role.outputMode === 'document') {
+        var loaiSel = document.getElementById('loaiVanBan');
+        if (loaiSel && role.vanBanType) {
+          loaiSel.value = role.vanBanType;
+          loaiSel.dispatchEvent(new Event('change'));
+        }
+        var noiDungEl = document.getElementById('noiDungChinh');
+        if (noiDungEl) noiDungEl.value = text;
+        if (typeof taoVanBan === 'function') taoVanBan();
+        status.textContent = '✅ Đã điền nội dung AI vào khung văn bản bên dưới — kiểm tra kỹ trước khi in/tải.';
+      } else {
+        if (outputEl) {
+          outputEl.textContent = text;
+          outputEl.hidden = false;
+        }
+        status.textContent = '✅ Hoàn tất — nội dung do AI tạo, vui lòng kiểm tra lại trước khi sử dụng chính thức.';
+      }
+    });
+  });
+})();
 </script>
 </body>
 </html>

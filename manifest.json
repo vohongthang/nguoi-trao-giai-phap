@@ -1,0 +1,17 @@
+{
+  "name": "Trung Tâm Trợ Lý AI & Văn Bản Chuyên Môn Công Chức Xã",
+  "short_name": "Trợ Lý Công Chức Xã",
+  "description": "15 Trợ lý AI chuyên trách theo 6 lĩnh vực công vụ cấp xã — soạn thảo văn bản, tra cứu, tư vấn nghiệp vụ.",
+  "start_url": "cong-chuc-xa.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#f4f6fa",
+  "theme_color": "#0f2c59",
+  "lang": "vi",
+  "icons": [
+    { "src": "favicon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "favicon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "favicon-180.png", "sizes": "180x180", "type": "image/png", "purpose": "any" }
+  ]
+}

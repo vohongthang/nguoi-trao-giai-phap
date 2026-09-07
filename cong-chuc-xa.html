@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trung Tâm Trợ Lý AI & Văn Bản Chuyên Môn Công Chức Xã | Người Trao Giải Pháp</title>
+<meta name="description" content="15 Trợ lý AI chuyên trách theo 6 lĩnh vực công vụ cấp xã — Văn phòng, Địa chính, Tư pháp, Văn hoá - Xã hội, Tài chính, Quân sự & An ninh. Soạn thảo văn bản, tra cứu, tư vấn nghiệp vụ ngay trên trình duyệt.">
+<link rel="canonical" href="https://vohongthang.github.io/nguoi-trao-giai-phap/cong-chuc-xa.html">
+
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0f2c59">
+<link rel="apple-touch-icon" href="favicon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Trợ Lý Công Chức Xã">
+
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="cxa-header">
+  <div class="wrap">
+    <a class="cxa-brand" href="index.html">
+      <img src="logo-mark.png" alt="Người Trao Giải Pháp">
+      <span>
+        <b>Trung Tâm Trợ Lý AI Công Chức Xã</b>
+        <small>Người Trao Giải Pháp — Công nghệ tinh gọn</small>
+      </span>
+    </a>
+    <div class="cxa-header-actions">
+      <button class="key-pill" id="keyPill" type="button">
+        <span class="dot"></span><span class="label">Chưa nhập Gemini API Key</span>
+      </button>
+      <a class="cxa-back" href="index.html">← Về trang chủ</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="cxa-hero">
+    <div class="wrap">
+      <span class="kicker">DÀNH RIÊNG CHO CÔNG CHỨC CẤP XÃ</span>
+      <h1>15 Trợ Lý AI Chuyên Trách — 6 Lĩnh Vực Công Vụ</h1>
+      <p>Soạn thảo văn bản đúng thể thức, tra cứu nghiệp vụ, tư vấn tình huống — mỗi trợ lý được thiết kế riêng cho một đầu việc cụ thể. Nhập Gemini API Key một lần, dùng chung cho toàn bộ <span id="roleCount">15</span> trợ lý bên dưới.</p>
+      <div class="cxa-hero-stats">
+        <div><b id="roleCountStat">15</b><span>Trợ lý AI</span></div>
+        <div><b>6</b><span>Nhóm lĩnh vực</span></div>
+        <div><b>0đ</b><span>Chi phí nền tảng — dùng API Key của bạn</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cxa-section">
+    <div class="wrap">
+      <div class="group-nav" id="groupNav"></div>
+      <div id="roleGroups"></div>
+    </div>
+  </section>
+</main>
+
+<div id="installBanner" hidden>
+  <p><strong>Cài vào màn hình chính</strong>Mở nhanh như một ứng dụng, dùng cả khi không có mạng ổn định.</p>
+  <button class="btn btn-primary btn-sm" id="installBtn" type="button">Cài đặt</button>
+  <button class="btn btn-ghost-dark btn-sm" id="dismissInstallBtn" type="button">Để sau</button>
+</div>
+
+<div class="modal-backdrop" id="keyModal" hidden>
+  <div class="modal-box">
+    <h3>🔑 Gemini API Key</h3>
+    <p>Nhập API Key Gemini của bạn — chỉ lưu trên trình duyệt máy này (LocalStorage), dùng chung cho toàn bộ 15 trợ lý AI. Người Trao Giải Pháp không thu thập hay nhìn thấy Key này.</p>
+    <input type="password" id="keyInput" placeholder="Dán Gemini API Key vào đây...">
+    <div class="modal-actions">
+      <button class="btn btn-primary" id="saveKeyBtn" type="button">💾 Lưu Key</button>
+      <button class="btn btn-outline" id="removeKeyBtn" type="button">Xoá Key</button>
+      <button class="btn btn-outline" id="closeKeyModalBtn" type="button">Đóng</button>
+    </div>
+    <p class="modal-note">Chưa có API Key? Lấy miễn phí tại <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">aistudio.google.com/apikey</a>.</p>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<footer class="cxa-footer">
+  <div class="wrap">
+    Thuộc kho giải pháp <a href="index.html">Người Trao Giải Pháp</a> — Võ Hồng Thắng · Kết quả do AI tạo ra cần được cán bộ kiểm tra lại trước khi ban hành chính thức.
+  </div>
+</footer>
+
+<script src="js/ai-roles.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
