@@ -14,11 +14,11 @@
   //  'text'     -> kết quả là một khối văn bản tự do (tra cứu / tóm tắt / kiểm tra / bài viết),
   //                không ép vào khung A4 vì không phải là một loại văn bản hành chính cố định.
   var ROLES = [
-    // ---------------- 1. Văn phòng - Thống kê ----------------
+    // ---------------- 1. Văn Phòng HĐND - UBND ----------------
     {
       slug: "bc-ktxh",
       group: "vp-tk",
-      groupLabel: "Văn Phòng - Thống Kê",
+      groupLabel: "Văn Phòng HĐND - UBND",
       icon: "📊",
       title: "AI Soạn Báo Cáo KTXH Định Kỳ",
       desc: "Nhập số liệu, tình hình nổi bật trong kỳ → nhận bản thảo báo cáo kinh tế – xã hội đúng bố cục.",
@@ -31,7 +31,7 @@
     {
       slug: "tb-ketluan",
       group: "vp-tk",
-      groupLabel: "Văn Phòng - Thống Kê",
+      groupLabel: "Văn Phòng HĐND - UBND",
       icon: "📋",
       title: "AI Lập Thông Báo Kết Luận / Kế Hoạch Công Tác Tuần",
       desc: "Nhập nội dung cuộc họp hoặc việc cần làm trong tuần → nhận thông báo kết luận rõ người/việc/thời hạn.",
@@ -44,7 +44,7 @@
     {
       slug: "tomtat-vb",
       group: "vp-tk",
-      groupLabel: "Văn Phòng - Thống Kê",
+      groupLabel: "Văn Phòng HĐND - UBND",
       icon: "🗜️",
       title: "AI Tóm Tắt Văn Bản Chỉ Đạo Cấp Trên",
       desc: "Dán nội dung công văn/chỉ thị cấp trên → nhận bản tóm tắt các ý chính, việc cần triển khai.",
@@ -54,11 +54,11 @@
       systemPrompt: "Bạn là chuyên viên Văn phòng UBND cấp xã. Đọc văn bản chỉ đạo cấp trên do cán bộ dán vào bên dưới và tóm tắt lại thành: (1) Trích yếu/mục đích chính của văn bản, (2) Các nội dung chỉ đạo/yêu cầu chính (liệt kê số thứ tự), (3) Việc UBND xã cần triển khai và thời hạn (nếu văn bản có nêu). CHỈ tóm tắt đúng nội dung có trong văn bản được cung cấp, không suy diễn thêm nội dung không có trong văn bản gốc."
     },
 
-    // ---------------- 2. Địa chính - Xây dựng - Môi trường ----------------
+    // ---------------- 2. Đất Đai - Xây Dựng - Môi Trường ----------------
     {
       slug: "bbvphc-dat",
       group: "dc-xd-mt",
-      groupLabel: "Địa Chính - Xây Dựng - Môi Trường",
+      groupLabel: "Đất Đai - Xây Dựng - Môi Trường",
       icon: "📐",
       title: "AI Lập Biên Bản Vi Phạm Hành Chính (Đất Đai/Xây Dựng)",
       desc: "Nhập thông tin vụ việc → nhận bản thảo biên bản vi phạm hành chính đúng thể thức.",
@@ -71,19 +71,19 @@
     {
       slug: "tuvan-luatdat",
       group: "dc-xd-mt",
-      groupLabel: "Địa Chính - Xây Dựng - Môi Trường",
+      groupLabel: "Đất Đai - Xây Dựng - Môi Trường",
       icon: "📚",
       title: "AI Tra Cứu & Tư Vấn Luật Đất Đai",
       desc: "Đặt câu hỏi tình huống về đất đai → nhận giải thích hướng dẫn tham khảo, dễ hiểu.",
       outputMode: "text",
       inputLabel: "Câu hỏi / tình huống cần tư vấn",
       inputPlaceholder: "VD: Hộ dân xin tách thửa đất ở đô thị diện tích 45m2, có đủ điều kiện tách thửa theo quy định hiện hành không? Trình tự thủ tục thế nào?",
-      systemPrompt: "Bạn là trợ lý tư vấn pháp luật đất đai cho công chức Địa chính cấp xã tại Việt Nam. Trả lời câu hỏi bên dưới một cách rõ ràng, có cấu trúc (giải thích ngắn gọn + các bước/điều kiện liên quan nếu có). QUAN TRỌNG: đây là thông tin tham khảo dựa trên hiểu biết chung, KHÔNG phải tư vấn pháp lý chính thức — luôn kết thúc câu trả lời bằng khuyến nghị cán bộ đối chiếu văn bản pháp luật đất đai hiện hành và xin ý kiến phòng chuyên môn cấp huyện trước khi áp dụng, vì quy định có thể đã thay đổi."
+      systemPrompt: "Bạn là trợ lý tư vấn pháp luật đất đai cho công chức Địa chính cấp xã tại Việt Nam. Trả lời câu hỏi bên dưới một cách rõ ràng, có cấu trúc (giải thích ngắn gọn + các bước/điều kiện liên quan nếu có). QUAN TRỌNG: đây là thông tin tham khảo dựa trên hiểu biết chung, KHÔNG phải tư vấn pháp lý chính thức — luôn kết thúc câu trả lời bằng khuyến nghị cán bộ đối chiếu văn bản pháp luật đất đai hiện hành và xin ý kiến cơ quan chuyên môn cấp tỉnh (Sở Nông nghiệp và Môi trường) trước khi áp dụng — lưu ý từ 01/7/2025, cấp huyện đã kết thúc hoạt động theo mô hình chính quyền địa phương 2 cấp, thẩm quyền chuyên môn nay thuộc cấp tỉnh và cấp xã."
     },
     {
       slug: "tt-gpmb",
       group: "dc-xd-mt",
-      groupLabel: "Địa Chính - Xây Dựng - Môi Trường",
+      groupLabel: "Đất Đai - Xây Dựng - Môi Trường",
       icon: "🏗️",
       title: "AI Soạn Tờ Trình GPMB/Đất Đai",
       desc: "Nhập thông tin dự án/khu vực → nhận bản thảo tờ trình giải phóng mặt bằng, đất đai.",
@@ -161,11 +161,11 @@
       systemPrompt: "Bạn là cán bộ Văn hóa - Thông tin cấp xã, viết bài phát thanh cho hệ thống truyền thanh xã. Viết theo văn phong tuyên truyền: gần gũi, dễ hiểu với người dân nông thôn, câu ngắn, có mở đầu (kính thưa bà con nhân dân...), nội dung chính theo đúng chủ đề cung cấp, và lời kêu gọi hành động cụ thể ở cuối bài. Ước lượng độ dài phù hợp với thời lượng đọc cán bộ nêu (nếu có). CHỈ dùng đúng thông tin/chủ đề được cung cấp, không tự thêm số liệu dịch bệnh hay sự kiện cụ thể không có trong dữ liệu."
     },
 
-    // ---------------- 5. Tài chính - Kế toán ----------------
+    // ---------------- 5. Tài Chính - Kế Hoạch ----------------
     {
       slug: "tt-ngansach",
       group: "tc-kt",
-      groupLabel: "Tài Chính - Kế Toán",
+      groupLabel: "Tài Chính - Kế Hoạch",
       icon: "💰",
       title: "AI Soạn Tờ Trình & Dự Toán Ngân Sách Xã",
       desc: "Nhập nội dung khoản chi/thu cần trình → nhận bản thảo tờ trình dự toán ngân sách.",
@@ -173,12 +173,12 @@
       vanBanType: "to-trinh",
       inputLabel: "Nội dung khoản thu/chi cần trình duyệt",
       inputPlaceholder: "VD: Tờ trình đề nghị phê duyệt dự toán kinh phí sửa chữa nhà văn hóa xóm 4, tổng kinh phí dự kiến 85 triệu đồng từ nguồn ngân sách xã năm 2026...",
-      systemPrompt: "Bạn là công chức Tài chính - Kế toán cấp xã tại Việt Nam. Soạn TỜ TRÌNH đề nghị phê duyệt dự toán ngân sách/khoản thu-chi theo thể thức: căn cứ (để cán bộ tự bổ sung số hiệu văn bản pháp lý), nội dung/lý do đề nghị theo đúng thông tin cung cấp, số kinh phí và nguồn kinh phí (nếu có nêu), đề nghị cấp trên xem xét phê duyệt. CHỈ dùng đúng số liệu cán bộ cung cấp, TUYỆT ĐỐI không tự bịa thêm số tiền hay khoản mục không có trong dữ liệu đầu vào."
+      systemPrompt: "Bạn là công chức lĩnh vực Tài chính - Kế hoạch cấp xã tại Việt Nam. Soạn TỜ TRÌNH đề nghị phê duyệt dự toán ngân sách/khoản thu-chi theo thể thức: căn cứ (để cán bộ tự bổ sung số hiệu văn bản pháp lý), nội dung/lý do đề nghị theo đúng thông tin cung cấp, số kinh phí và nguồn kinh phí (nếu có nêu), đề nghị cấp trên xem xét phê duyệt. CHỈ dùng đúng số liệu cán bộ cung cấp, TUYỆT ĐỐI không tự bịa thêm số tiền hay khoản mục không có trong dữ liệu đầu vào."
     },
     {
       slug: "kt-chungtu",
       group: "tc-kt",
-      groupLabel: "Tài Chính - Kế Toán",
+      groupLabel: "Tài Chính - Kế Hoạch",
       icon: "🧾",
       title: "AI Kiểm Tra Thể Thức Chứng Từ Chi",
       desc: "Dán nội dung/mô tả chứng từ → nhận nhận xét về thể thức, các mục còn thiếu cần bổ sung.",
@@ -188,11 +188,11 @@
       systemPrompt: "Bạn là kế toán cấp xã, hỗ trợ rà soát thể thức chứng từ chi trước khi trình ký. Dựa trên mô tả chứng từ bên dưới, nhận xét theo cấu trúc: (1) Các thành phần đã có, (2) Các thành phần/chữ ký còn thiếu hoặc chưa rõ theo mô tả, (3) Lưu ý chung về nguyên tắc thể thức chứng từ kế toán. CHỈ nhận xét dựa trên đúng thông tin được mô tả, không suy đoán các chi tiết không được nêu ra, và nhắc cán bộ đối chiếu quy định kế toán hiện hành cho quyết định cuối cùng."
     },
 
-    // ---------------- 6. Quân sự & An ninh xã ----------------
+    // ---------------- 6. Quân Sự & Trật Tự An Toàn Xã Hội ----------------
     {
       slug: "lenh-nvqs",
       group: "qs-an",
-      groupLabel: "Quân Sự & An Ninh Xã",
+      groupLabel: "Quân Sự & Trật Tự An Toàn Xã Hội",
       icon: "🎖️",
       title: "AI Soạn Lệnh Gọi NVQS & Kế Hoạch Huấn Luyện",
       desc: "Nhập đợt gọi/kế hoạch huấn luyện → nhận bản thảo lệnh gọi hoặc kế hoạch huấn luyện.",
@@ -205,7 +205,7 @@
     {
       slug: "ke-hoach-pccc",
       group: "qs-an",
-      groupLabel: "Quân Sự & An Ninh Xã",
+      groupLabel: "Quân Sự & Trật Tự An Toàn Xã Hội",
       icon: "🚒",
       title: "AI Lập Kế Hoạch PCCC & Tuần Tra An Ninh",
       desc: "Nhập nội dung/địa bàn → nhận bản thảo kế hoạch phòng cháy chữa cháy hoặc tuần tra an ninh.",
@@ -219,10 +219,13 @@
 
   // Cấu hình bổ sung cho TYPE_CONFIG trong soan-thao-van-ban.html — 3 loại văn bản mới
   // (Tờ trình / Biên bản / Kế hoạch) ngoài 4 loại có sẵn (Công văn/Báo cáo/Đơn/Thông báo).
+  // showKinhGui: false — Biên bản và Kế hoạch theo mẫu Nghị định 30/2020/NĐ-CP KHÔNG có dòng
+  // "Kính gửi" (Biên bản dùng "Thành phần tham gia" trong phần nội dung; Kế hoạch không địa chỉ
+  // hoá tới một nơi nhận cụ thể). Mặc định (không khai báo) = true, giữ đúng 4 loại văn bản gốc.
   var EXTRA_VANBAN_TYPES = {
-    "to-trinh": { tieuDe: "TỜ TRÌNH", trichYeuInline: false, showNoiNhan: true, dateAtBottom: false, chucVuDefault: "Chủ tịch UBND xã" },
-    "bien-ban": { tieuDe: "BIÊN BẢN", trichYeuInline: false, showNoiNhan: false, dateAtBottom: false, chucVuDefault: "Người lập biên bản" },
-    "ke-hoach": { tieuDe: "KẾ HOẠCH", trichYeuInline: false, showNoiNhan: true, dateAtBottom: false, chucVuDefault: "Chủ tịch UBND xã" }
+    "to-trinh": { tieuDe: "TỜ TRÌNH", trichYeuInline: false, showNoiNhan: true, showKinhGui: true, dateAtBottom: false, chucVuDefault: "Chủ tịch UBND xã" },
+    "bien-ban": { tieuDe: "BIÊN BẢN", trichYeuInline: false, showNoiNhan: false, showKinhGui: false, dateAtBottom: false, chucVuDefault: "Người lập biên bản" },
+    "ke-hoach": { tieuDe: "KẾ HOẠCH", trichYeuInline: false, showNoiNhan: true, showKinhGui: false, dateAtBottom: false, chucVuDefault: "Chủ tịch UBND xã" }
   };
 
   function getRoleBySlug(slug) {
